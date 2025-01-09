@@ -167,7 +167,16 @@ class Msg:
 
     @content.setter  # type: ignore[no-redef]
     def content(self, value: Any) -> None:
-        """Set the content of the message."""
+        """Set the content of the message with proper UTF-8 encoding."""
+        if isinstance(value, str):
+            # Ensure proper UTF-8 encoding for string content
+            try:
+                # First encode to bytes then decode to ensure valid UTF-8
+                encoded = value.encode("utf-8", errors="replace")
+                value = encoded.decode("utf-8", errors="replace")
+            except Exception as e:
+                logger.warning(f"UTF-8 encoding failed for content: {e}")
+
         if not is_serializable(value):
             logger.warning(
                 f"The content of {type(value)} is not serializable, which "
@@ -204,8 +213,8 @@ class Msg:
         self._timestamp = value
 
     def formatted_str(self, colored: bool = False) -> str:
-        """Return the formatted string of the message. If the message has an
-        url, the url will be appended to the content.
+        """Return the formatted string of the message with proper UTF-8 encoding.
+        If the message has a url, the url will be appended to the content.
 
         Args:
             colored (`bool`, defaults to `False`):
@@ -214,18 +223,35 @@ class Msg:
         Returns:
             `str`: The formatted string of the message.
         """
-        if colored:
-            name = self._colored_name
-        else:
-            name = self.name
 
-        colored_strs = [f"{name}: {self.content}"]
+        def ensure_utf8(text: Any) -> str:
+            """Ensure text is properly UTF-8 encoded"""
+            try:
+                if isinstance(text, bytes):
+                    return text.decode("utf-8", errors="replace")
+                return (
+                    str(text)
+                    .encode("utf-8", errors="replace")
+                    .decode("utf-8", errors="replace")
+                )
+            except Exception:
+                return str(text)
+
+        if colored:
+            name = ensure_utf8(self._colored_name)
+        else:
+            name = ensure_utf8(self.name)
+
+        content = ensure_utf8(self.content)
+        colored_strs = [f"{name}: {content}"]
+
         if self.url is not None:
             if isinstance(self.url, list):
                 for url in self.url:
-                    colored_strs.append(f"{name}: {url}")
+                    colored_strs.append(f"{name}: {ensure_utf8(url)}")
             else:
-                colored_strs.append(f"{name}: {self.url}")
+                colored_strs.append(f"{name}: {ensure_utf8(self.url)}")
+
         return "\n".join(colored_strs)
 
     def __eq__(self, value: object) -> bool:

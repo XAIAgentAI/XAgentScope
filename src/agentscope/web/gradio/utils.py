@@ -2,11 +2,13 @@
 """web ui utils"""
 import os
 import threading
+import sys
 from typing import Optional
 import hashlib
 from multiprocessing import Queue
 from queue import Empty
 from collections import defaultdict
+from loguru import logger
 
 from PIL import Image
 
@@ -202,7 +204,7 @@ def user_input(
     prefix: str = "User input: ",
     timeout: Optional[int] = None,
 ) -> str:
-    """get user input"""
+    """get user input with proper UTF-8 encoding handling"""
     if hasattr(thread_local_data, "uid"):
         get_reset_msg(uid=thread_local_data.uid)
         content = get_player_input(
@@ -210,6 +212,23 @@ def user_input(
             uid=thread_local_data.uid,
         )
     else:
+        import sys
+        import io
+
+        def safe_input(prompt: str) -> str:
+            """Safely get input with proper UTF-8 encoding"""
+            try:
+                # Write prompt with UTF-8 encoding
+                sys.stdout.buffer.write(prompt.encode("utf-8"))
+                sys.stdout.buffer.flush()
+
+                # Read input directly from buffer for UTF-8
+                raw_input = sys.stdin.buffer.readline()
+                return raw_input.decode("utf-8").strip()
+            except (ValueError, IOError) as e:
+                logger.error(f"Input error: {e}")
+                return "exit"  # Graceful exit on I/O errors
+
         if timeout:
             from inputimeout import inputimeout, TimeoutOccurred
 
@@ -217,6 +236,20 @@ def user_input(
                 content = inputimeout(prefix, timeout=timeout)
             except TimeoutOccurred as exc:
                 raise TimeoutError("timed out") from exc
+            except (ValueError, IOError):
+                # Fallback to safe_input with manual timeout
+                import time
+
+                start_time = time.time()
+                while True:
+                    if time.time() - start_time > timeout:
+                        raise TimeoutError("timed out")
+                    try:
+                        content = safe_input(prefix)
+                        break
+                    except (ValueError, IOError):
+                        time.sleep(0.1)
         else:
-            content = input(prefix)
+            content = safe_input(prefix)
+
     return content

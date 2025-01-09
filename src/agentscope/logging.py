@@ -42,8 +42,8 @@ _PREFIX_DICT = {}
 
 
 def log_stream_msg(msg: Msg, last: bool = True) -> None:
-    """Print the message in different streams, including terminal, studio, and
-    gradio if it is active.
+    """Print the message in different streams with proper UTF-8 encoding.
+    Includes terminal, studio, and gradio if active.
 
     Args:
         msg (`Msg`):
@@ -54,21 +54,31 @@ def log_stream_msg(msg: Msg, last: bool = True) -> None:
     """
     global _PREFIX_DICT
 
-    # Print msg to terminal
-    formatted_str = msg.formatted_str(colored=True)
+    def safe_print(text: str, end: str = "\n") -> None:
+        """Print with proper UTF-8 encoding handling"""
+        try:
+            # Use sys.stdout.buffer for direct binary writing
+            import sys
 
+            output = (text + end).encode("utf-8", errors="replace")
+            sys.stdout.buffer.write(output)
+            sys.stdout.buffer.flush()
+        except Exception:
+            # Fallback to regular print
+            print(text, end=end, flush=True)
+
+    # Print msg to terminal with proper encoding
+    formatted_str = msg.formatted_str(colored=True)
     print_str = formatted_str[_PREFIX_DICT.get(msg.id, 0) :]
 
     if last:
         # Remove the prefix from the dictionary
         del _PREFIX_DICT[msg.id]
-
-        print(print_str)
+        safe_print(print_str)
     else:
         # Update the prefix in the dictionary
         _PREFIX_DICT[msg.id] = len(formatted_str)
-
-        print(print_str, end="")
+        safe_print(print_str, end="")
 
     # Push msg to studio if it is active
     if _studio_client.active:

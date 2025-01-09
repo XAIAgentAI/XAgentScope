@@ -1,0 +1,12 @@
+{
+    "config_name": "my_ollama_chat_config",
+    "model_type": "ollama_chat",
+    "model_name": "llama2",
+    "options": {
+        "temperature": 0.1,
+        "num_ctx": 512,
+        "timeout": 120,
+        "system": "你是一个中文AI助手。你必须始终使用简体中文回复。即使用户使用其他语言提问，你也必须用中文回答。这是必须遵守的规则。\n\nYou are a Chinese AI assistant. You MUST ALWAYS respond in Simplified Chinese. Even if users ask in other languages, you MUST respond in Chinese. This is a strict rule."
+    },
+    "keep_alive": "5m"
+}

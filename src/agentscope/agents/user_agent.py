@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 """User Agent class"""
+import os
+import sys
 import time
+import errno
+import select
 from typing import Union, Sequence
 from typing import Optional
 from loguru import logger
@@ -92,19 +96,57 @@ class UserAgent(AgentBase):
             # TODO: To avoid order confusion, because `input` print much
             #  quicker than logger.chat
             time.sleep(0.5)
-            content = user_input(timeout=timeout, prefix=self.input_hint)
+
+            # Handle input with proper UTF-8 encoding and timeout support
+            def get_input(
+                prompt: str,
+                timeout_val: Optional[int] = None,
+            ) -> str:
+                """Get input with proper encoding and optional timeout"""
+                try:
+                    # Print prompt with proper encoding
+                    print(prompt, end="", flush=True)
+
+                    if timeout_val:
+                        from inputimeout import inputimeout, TimeoutOccurred
+
+                        try:
+                            raw_input = inputimeout(
+                                prompt="",
+                                timeout=timeout_val,
+                            )
+                        except TimeoutOccurred:
+                            raise TimeoutError("timed out")
+                    else:
+                        raw_input = input()
+
+                    # Ensure proper UTF-8 encoding
+                    encoded = raw_input.encode("utf-8", errors="replace")
+                    decoded = encoded.decode("utf-8", errors="replace")
+                    return decoded.strip()
+
+                except Exception as e:
+                    logger.error(f"Input error: {e}")
+                    return "exit"
+
+            # Get main content
+            content = get_input(self.input_hint, timeout)
+
+            # Handle additional inputs
             kwargs = {}
             if required_keys is not None:
                 if isinstance(required_keys, str):
                     required_keys = [required_keys]
 
                 for key in required_keys:
-                    kwargs[key] = input(f"{key}: ")
+                    kwargs[key] = get_input(f"{key}: ")
 
-            # Input url of file, image, video, audio or website
+            # Handle URL input
             url = None
             if self.require_url:
-                url = input("URL (or Enter to skip): ")
+                url = get_input("URL (or Enter to skip): ")
+                if url == "":
+                    url = None
                 if url == "":
                     url = None
 
