@@ -272,11 +272,57 @@ while True:
     break
 ```
 
-## 智能体类型
+## AgentScope架构
 
-AgentScope提供了多种类型的智能体，以满足不同场景的需求：
+### 1. 核心系统和服务
+- 多智能体通信
+- 模型API封装
+- 分布式计算
+- 提示词工程
+- 内存管理
+- Web服务
+- 日志和监控
+- 服务集成（网络搜索、代码执行）
+- 多模态处理（文本、图像、音频）
 
-### ReAct模式智能体
+### 2. 主要目录
+- `src/agentscope/`: 核心实现
+  - `agents/`: 智能体实现
+  - `models/`: 模型API封装
+  - `memory/`: 内存管理
+  - `service/`: 工具服务函数
+  - `rpc/`: 分布式计算组件
+  - `web/`: Web交互工具
+
+- `examples/`: 示例应用
+- `docs/`: 文档
+- `tests/`: 单元测试模块
+- `scripts/`: 模型API启动脚本
+- `.github/`: CI/CD配置
+
+### 3. 主要功能/类
+- 智能体类：
+  - `AgentBase`: 基础智能体类
+  - `DialogAgent`: 对话智能体
+  - `UserAgent`: 用户交互智能体
+
+- 模型封装：
+  - `ModelWrapperBase`: 抽象基类
+  - `OpenAIChatWrapper`
+  - `DashScopeChatWrapper`
+  - `GeminiChatWrapper`
+  - `ZhipuAIChatWrapper`
+  - `OllamaChatWrapper`
+
+- 工具类：
+  - `Msg`: 消息通信类
+  - `MemoryBase`: 内存管理
+  - `ServiceToolkit`: 服务函数管理
+  - `PipelineBase`: 消息路由
+
+### 4. 智能体类型
+
+#### ReAct模式智能体
 - **定义**: ReAct (Reasoning + Acting) 是一种结合推理和行动的智能体模式
 - **特点**:
   - 先思考(Reasoning)后行动(Acting)
@@ -285,7 +331,7 @@ AgentScope提供了多种类型的智能体，以满足不同场景的需求：
 - **难度**: ⭐⭐⭐
 - **应用场景**: 复杂问题解决、多步骤任务
 
-### 检索增强智能体 (RAG - Retrieval Augmented Generation)
+#### 检索增强智能体 (RAG - Retrieval Augmented Generation)
 - **定义**: 具备检索外部知识能力的智能体
 - **特点**:
   - 可以访问和搜索外部数据库/文档
@@ -294,7 +340,7 @@ AgentScope提供了多种类型的智能体，以满足不同场景的需求：
 - **难度**: ⭐⭐⭐⭐
 - **应用场景**: 知识密集型任务、需要最新信息的场景
 
-### 用户交互智能体
+#### 用户交互智能体
 - **定义**: 专注于与用户直接对话交互的智能体
 - **特点**:
   - 注重用户体验
@@ -303,7 +349,7 @@ AgentScope提供了多种类型的智能体，以满足不同场景的需求：
 - **难度**: ⭐⭐
 - **应用场景**: 客服、教育辅导、个人助手
 
-### 对话智能体
+#### 对话智能体
 - **定义**: 基础的对话系统
 - **特点**:
   - 简单的问答能力
@@ -328,7 +374,7 @@ AgentScope提供了多种类型的智能体，以满足不同场景的需求：
    - 用户交互智能体需要对话状态管理
    - 对话智能体相对简单直接
 
-### AgentScope前端
+### 前端实现
 
 AgentScope 提供了一个易于使用的运行时用户界面，能够在前端显示多模态输出，包括文本、图像、音频和视频。
 
