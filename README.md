@@ -1,4 +1,4 @@
-English | [**中文**](https://github.com/modelscope/agentscope/blob/main/README_ZH.md) | [**日本語**](https://github.com/modelscope/agentscope/blob/main/README_JA.md)
+English | [中文](https://github.com/modelscope/agentscope/blob/main/README_ZH.md) | [日本語](https://github.com/modelscope/agentscope/blob/main/README_JA.md)
 
 <a href="https://trendshift.io/repositories/10079" target="_blank"><img src="https://trendshift.io/api/badge/repositories/10079" alt="modelscope%2Fagentscope | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 
@@ -8,7 +8,7 @@ English | [**中文**](https://github.com/modelscope/agentscope/blob/main/README
 <img src="https://img.alicdn.com/imgextra/i2/O1CN01cdjhVE1wwt5Auv7bY_!!6000000006373-0-tps-1792-1024.jpg" width="600" alt="agentscope-logo">
 </h1>
 
-Start building LLM-empowered multi-agent applications in an easier way.
+Build LLM-empowered multi-agent applications in an easier way.
 
 [![](https://img.shields.io/badge/cs.MA-2402.14034-B31C1C?logo=arxiv&logoColor=B31C1C)](https://arxiv.org/abs/2402.14034)
 [![](https://img.shields.io/badge/python-3.9+-blue)](https://pypi.org/project/agentscope/)
@@ -293,11 +293,111 @@ while True:
         break
 ```
 
-### AgentScope Studio
+## AgentScope Architecture
 
-AgentScope provides an easy-to-use runtime user interface capable of
-displaying multimodal output on the front end, including text, images,
-audio and video.
+### 1. Core System and Services
+- Multi-agent Communication
+- Model API Encapsulation
+- Distributed Computing
+- Prompt Engineering
+- Memory Management
+- Web Services
+- Logging and Monitoring
+- Service Integration (Web Search, Code Execution)
+- Multi-modal Processing (Text, Image, Audio)
+
+### 2. Main Directories
+- `src/agentscope/`: Core Implementation
+  - `agents/`: Agent Implementation
+  - `models/`: Model API Encapsulation
+  - `memory/`: Memory Management
+  - `service/`: Tool Service Functions
+  - `rpc/`: Distributed Computing Components
+  - `web/`: Web Interaction Tools
+
+- `examples/`: Example Applications
+- `docs/`: Documentation
+- `tests/`: Unit Test Modules
+- `scripts/`: Model API Startup Scripts
+- `.github/`: CI/CD Configuration
+
+### 3. Main Features/Classes
+- Agent Classes:
+  - `AgentBase`: Base Agent Class
+  - `DialogAgent`: Dialog Agent
+  - `UserAgent`: User Interaction Agent
+
+- Model Wrappers:
+  - `ModelWrapperBase`: Abstract Base Class
+  - `OpenAIChatWrapper`
+  - `DashScopeChatWrapper`
+  - `GeminiChatWrapper`
+  - `ZhipuAIChatWrapper`
+  - `OllamaChatWrapper`
+
+- Utility Classes:
+  - `Msg`: Message Communication Class
+  - `MemoryBase`: Memory Management
+  - `ServiceToolkit`: Service Function Management
+  - `PipelineBase`: Message Routing
+
+### 4. Agent Types
+
+#### ReAct Mode Agent
+- **Definition**: ReAct (Reasoning + Acting) is a mode that combines reasoning and action
+- **Features**:
+  - Think (Reasoning) before Acting
+  - Can solve problems step by step
+  - Can record reasoning process
+- **Difficulty**: ⭐⭐⭐
+- **Use Cases**: Complex Problem Solving, Multi-step Tasks
+
+#### Retrieval Augmented Agent (RAG)
+- **Definition**: Agent with external knowledge retrieval capability
+- **Features**:
+  - Can access and search external databases/documents
+  - Integrates retrieved information into responses
+  - Easy knowledge updates
+- **Difficulty**: ⭐⭐⭐⭐
+- **Use Cases**: Knowledge-intensive Tasks, Real-time Information Needs
+
+#### User Interaction Agent
+- **Definition**: Agent focused on direct user dialogue interaction
+- **Features**:
+  - Emphasizes user experience
+  - Dialogue management capability
+  - Can handle multi-turn dialogues
+- **Difficulty**: ⭐⭐
+- **Use Cases**: Customer Service, Educational Tutoring, Personal Assistant
+
+#### Dialog Agent
+- **Definition**: Basic dialogue system
+- **Features**:
+  - Simple Q&A capability
+  - Based on pre-trained models
+  - Usually single-turn dialogue
+- **Difficulty**: ⭐
+- **Use Cases**: Simple Q&A, Basic Dialogue
+
+### Key Differences
+1. **Complexity**:
+   - Dialog Agent < User Interaction Agent < ReAct Mode < Retrieval Augmented Agent
+
+2. **Function Range**:
+   - Dialog Agent: Basic Dialogue
+   - User Interaction Agent: Multi-turn Dialogue + User Experience
+   - ReAct Mode: Complex Reasoning + Action
+   - Retrieval Augmented Agent: Knowledge Retrieval + Information Integration
+
+3. **Implementation Difficulty**:
+   - Retrieval Augmented Agent needs additional knowledge base and retrieval system
+   - ReAct needs reasoning chain and action planning implementation
+   - User Interaction Agent needs dialogue state management
+   - Dialog Agent relatively simple and direct
+
+### Frontend Implementation
+
+AgentScope provides an easy-to-use runtime user interface capable of displaying multimodal output on the front end, including text, images, audio and video.
 
 Refer to our [tutorial](https://modelscope.github.io/agentscope/en/tutorial/209-gui.html) for more details.
 
@@ -307,21 +407,21 @@ Refer to our [tutorial](https://modelscope.github.io/agentscope/en/tutorial/209-
 
 ## Tutorial
 
-- [About AgentScope](https://modelscope.github.io/agentscope/zh_CN/tutorial/101-agentscope.html)
-- [Installation](https://modelscope.github.io/agentscope/zh_CN/tutorial/102-installation.html)
-- [Quick Start](https://modelscope.github.io/agentscope/zh_CN/tutorial/103-example.html)
-- [Model](https://modelscope.github.io/agentscope/zh_CN/tutorial/203-model.html)
-- [Prompt Engineering](https://modelscope.github.io/agentscope/zh_CN/tutorial/206-prompt.html)
-- [Agent](https://modelscope.github.io/agentscope/zh_CN/tutorial/201-agent.html)
-- [Memory](https://modelscope.github.io/agentscope/zh_CN/tutorial/205-memory.html)
-- [Response Parser](https://modelscope.github.io/agentscope/zh_CN/tutorial/203-parser.html)
-- [Tool](https://modelscope.github.io/agentscope/zh_CN/tutorial/204-service.html)
-- [Pipeline and MsgHub](https://modelscope.github.io/agentscope/zh_CN/tutorial/202-pipeline.html)
-- [Distribution](https://modelscope.github.io/agentscope/zh_CN/tutorial/208-distribute.html)
-- [AgentScope Studio](https://modelscope.github.io/agentscope/zh_CN/tutorial/209-gui.html)
-- [Logging](https://modelscope.github.io/agentscope/zh_CN/tutorial/105-logging.html)
-- [Monitor](https://modelscope.github.io/agentscope/zh_CN/tutorial/207-monitor.html)
-- [Example: Werewolf Game](https://modelscope.github.io/agentscope/zh_CN/tutorial/104-usecase.html)
+- [About AgentScope](https://modelscope.github.io/agentscope/en/tutorial/101-agentscope.html)
+- [Installation](https://modelscope.github.io/agentscope/en/tutorial/102-installation.html)
+- [Quick Start](https://modelscope.github.io/agentscope/en/tutorial/103-example.html)
+- [Model](https://modelscope.github.io/agentscope/en/tutorial/203-model.html)
+- [Prompt Engineering](https://modelscope.github.io/agentscope/en/tutorial/206-prompt.html)
+- [Agent](https://modelscope.github.io/agentscope/en/tutorial/201-agent.html)
+- [Memory](https://modelscope.github.io/agentscope/en/tutorial/205-memory.html)
+- [Response Parser](https://modelscope.github.io/agentscope/en/tutorial/203-parser.html)
+- [Tool](https://modelscope.github.io/agentscope/en/tutorial/204-service.html)
+- [Pipeline and MsgHub](https://modelscope.github.io/agentscope/en/tutorial/202-pipeline.html)
+- [Distribution](https://modelscope.github.io/agentscope/en/tutorial/208-distribute.html)
+- [AgentScope Studio](https://modelscope.github.io/agentscope/en/tutorial/209-gui.html)
+- [Logging](https://modelscope.github.io/agentscope/en/tutorial/105-logging.html)
+- [Monitor](https://modelscope.github.io/agentscope/en/tutorial/207-monitor.html)
+- [Example: Werewolf Game](https://modelscope.github.io/agentscope/en/tutorial/104-usecase.html)
 
 ## License
 
