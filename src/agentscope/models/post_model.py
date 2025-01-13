@@ -429,7 +429,7 @@ class DegptChatWrapper(PostAPIModelWrapperBase):
         api_url: str = (
             "https://korea-chat.degpt.ai/api/v0/chat/completion/proxy"
         ),
-        model_name: str = "DeepSeek-V3",
+        model_name: str = "Llama3.3-70B",
         stream: bool = False,
         **kwargs: Any,
     ) -> None:

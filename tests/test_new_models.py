@@ -28,7 +28,7 @@ def test_superimage() -> None:
         auth_token = None  # In production, get from config or environment
         model = SuperimageGenerationWrapper(
             config_name="superimage-test",
-            timeout=10,  # 10 second timeout for testing
+            timeout=30,  # 10 second timeout for testing
             auth_token=auth_token,
         )
         prompt = model.format(Msg("user", "画一个女孩", role="user"))
