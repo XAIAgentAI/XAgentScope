@@ -14,6 +14,8 @@ from pathlib import Path
 from random import choice
 import argparse
 
+from loguru import logger
+
 
 from flask import (
     Flask,
@@ -59,10 +61,10 @@ else:
 
 _db = SQLAlchemy(_app)
 
-_socketio = SocketIO(_app)
+_socketio = SocketIO(_app, cors_allowed_origins="*")
 
 # This will enable CORS for all routes
-CORS(_app)
+CORS(_app, resources={r"/*": {"origins": "*"}})
 
 _RUNS_DIRS = []
 
@@ -374,6 +376,141 @@ def _agent_memory() -> Response:
     return jsonify(mem)
 
 
+@_app.route("/api/models/test", methods=["POST"])
+def _test_model() -> Response:
+    """Test endpoint for model inference with streaming support.
+
+    Expects JSON payload with:
+    - model_type: str ("degpt" or "superimage")
+    - input: str (text input for model)
+    - config_name: str (model configuration name)
+    - parameters: dict (optional model parameters)
+      For superimage: requires auth_token
+    - stream: bool (optional, for streaming text generation)
+
+    Returns:
+    - JSON with model output or error message
+    - For streaming: emits "model_test_update" events via SocketIO
+    """
+    try:
+        data = request.json
+        model_type = data.get("model_type")
+        model_input = data.get("input")
+        config_name = data.get("config_name")
+        parameters = data.get("parameters", {})
+
+        if not all([model_type, model_input, config_name]):
+            return (
+                jsonify(
+                    {
+                        "status": "error",
+                        "message": (
+                            "Missing required fields: model_type, input, "
+                            "and config_name"
+                        ),
+                    },
+                ),
+                400,
+            )
+
+        if model_type not in ["degpt", "superimage"]:
+            return (
+                jsonify(
+                    {
+                        "status": "error",
+                        "message": f"Unsupported model type: {model_type}",
+                    },
+                ),
+                400,
+            )
+
+        try:
+            # Import model wrappers
+            from ..models.post_model import (
+                DegptChatWrapper,
+                SuperimageGenerationWrapper,
+            )
+
+            # Initialize appropriate model wrapper
+            if model_type == "degpt":
+                model = DegptChatWrapper(
+                    config_name=config_name,
+                    api_url=(
+                        "https://korea-chat.degpt.ai/api/v0/"
+                        "chat/completion/proxy"
+                    ),
+                    model_name="DeepSeek-V3",
+                    stream=False,  # Disable streaming to avoid issues
+                )
+                response = model(model_input)
+            else:  # superimage
+                if "auth_token" not in parameters:
+                    return (
+                        jsonify(
+                            {
+                                "status": "error",
+                                "message": (
+                                    "auth_token required for superimage"
+                                ),
+                            },
+                        ),
+                        400,
+                    )
+
+                model = SuperimageGenerationWrapper(
+                    config_name=config_name,
+                    api_url=(
+                        "https://test.superimage.ai/api/v1/"
+                        "prompts/generate-image"
+                    ),
+                    model_name="flux",
+                    auth_token=parameters.pop("auth_token"),
+                )
+                response = model(model_input)
+
+            # Both wrappers return ModelResponse objects
+            return jsonify(
+                {
+                    "status": "success",
+                    "result": {
+                        "text": response.text if response.text else None,
+                        "image_urls": response.image_urls
+                        if response.image_urls
+                        else None,
+                        "raw": response.raw,
+                    },
+                },
+            )
+
+        except Exception as e:
+            logger.error(
+                f"Model inference error: {str(e)}\n{traceback.format_exc()}",
+            )
+            return (
+                jsonify(
+                    {
+                        "status": "error",
+                        "message": f"Model inference failed: {str(e)}",
+                    },
+                ),
+                500,
+            )
+
+    except Exception as e:
+        logger.error(
+            f"Request processing error: {str(e)}\n{traceback.format_exc()}",
+        )
+        return (
+            jsonify(
+                {
+                    "status": "error",
+                    "message": f"Request processing failed: {str(e)}",
+                },
+            ),
+            500,
+        )
+
+
 @_app.route("/api/servers/alloc", methods=["GET"])
 def _alloc_server() -> Response:
     # TODO: check the server is still running
@@ -448,7 +585,7 @@ def _push_message() -> Response:
     _socketio.emit(
         "display_message",
         data,
-        room=run_id,
+        to=run_id,
     )
     _app.logger.debug("Flask: send display_message")
     return jsonify(status="ok")
@@ -846,7 +983,7 @@ def _request_user_input(data: dict) -> None:
     _socketio.emit(
         "enable_user_input",
         data,
-        room=run_id,
+        to=run_id,
     )
 
     _app.logger.debug("Flask: send enable_user_input")
@@ -877,7 +1014,7 @@ def _user_input_ready(data: dict) -> None:
             "content": content,
             "url": None if url in ["", []] else url,
         },
-        room=run_id,
+        to=run_id,
     )
 
     # Close the request in the queue
@@ -889,7 +1026,7 @@ def _user_input_ready(data: dict) -> None:
         _socketio.emit(
             "enable_user_input",
             new_request,
-            room=run_id,
+            to=run_id,
         )
 
     _app.logger.debug("Flask: send fetch_user_input")
@@ -918,7 +1055,7 @@ def _on_join(data: dict) -> None:
         _socketio.emit(
             "enable_user_input",
             new_request,
-            room=run_id,
+            to=run_id,
         )
 
 
