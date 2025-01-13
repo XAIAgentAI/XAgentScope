@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# pylint: disable=R0912,R0915
+# -*- coding: utf-8 -*-
 """Model wrapper for post-based inference apis."""
 import json
 import time
@@ -26,11 +28,11 @@ class PostAPIModelWrapperBase(ModelWrapperBase, ABC):
         config_name: str,
         api_url: str,
         model_name: Optional[str] = None,
-        headers: dict = None,
+        headers: Optional[dict] = None,
         max_length: int = 2048,
         timeout: int = 30,
-        json_args: dict = None,
-        post_args: dict = None,
+        json_args: Optional[dict] = None,
+        post_args: Optional[dict] = None,
         max_retries: int = _DEFAULT_MAX_RETRIES,
         messages_key: str = _DEFAULT_MESSAGES_KEY,
         retry_interval: int = _DEFAULT_RETRY_INTERVAL,
@@ -105,17 +107,26 @@ class PostAPIModelWrapperBase(ModelWrapperBase, ABC):
         """Parse the response json data into ModelResponse"""
         return ModelResponse(raw=response)
 
-    def __call__(self, input_: str, **kwargs: Any) -> ModelResponse:
+    def __call__(
+        self,
+        input_: Union[str, List[dict]],
+        **kwargs: Any,
+    ) -> ModelResponse:
         """Calling the model with requests.post.
 
         Args:
-            input_ (`str`):
-                The input string to the model.
+            input_ (`Union[str, List[dict]]`):
+                The input to the model. Can be either:
+                - A string for direct prompts (e.g. image generation)
+                - A list of message dicts for chat models
+                中文说明：模型输入，可以是字符串（用于直接提示，如图像生成）
+                或消息字典列表（用于对话模型）
 
         Returns:
             `dict`: A dictionary that contains the response of the model and
-            related
-            information (e.g. cost, time, the number of tokens, etc.).
+            related information (e.g. cost, time, the number of tokens, etc.).
+            中文说明：包含模型响应和相关信息的字典（如成本、时间、token数等）
+            中文说明：返回字典包含模型响应和相关信息
 
         Note:
             `parse_func`, `fault_handler` and `max_retries` are reserved for
@@ -133,40 +144,98 @@ class PostAPIModelWrapperBase(ModelWrapperBase, ABC):
         # step1: prepare keyword arguments
         post_args = {**self.post_args, **kwargs}
 
+        # Handle both string prompts and message lists
+        if isinstance(input_, str):
+            json_content = {self.messages_key: input_, **self.json_args}
+        else:
+            json_content = {self.messages_key: input_, **self.json_args}
+
         request_kwargs = {
             "url": self.api_url,
-            "json": {self.messages_key: input_, **self.json_args},
+            "json": json_content,
             "headers": self.headers or {},
             **post_args,
         }
 
-        # step2: prepare post requests
+        # step2: prepare post requests with proper error handling
+        response = None
+        last_error = None
+
+        # Add timeout to request kwargs if not already present
+        if "timeout" not in request_kwargs:
+            request_kwargs["timeout"] = self.timeout
+
         for i in range(1, self.max_retries + 1):
-            response = requests.post(**request_kwargs)
+            try:
+                response = requests.post(**request_kwargs)
 
-            if response.status_code == requests.codes.ok:
-                break
+                # Handle common HTTP error codes
+                if response.status_code == requests.codes.ok:
+                    break
+                if response.status_code == 401:
+                    raise RuntimeError(
+                        "API authentication failed - check your auth token",
+                    )
+                if response.status_code == 403:
+                    raise RuntimeError(
+                        "API access forbidden - check your permissions",
+                    )
+                if response.status_code == 429:
+                    raise RuntimeError(
+                        "API rate limit exceeded - try again later",
+                    )
 
-            if i < self.max_retries:
-                logger.warning(
-                    f"Failed to call the model with "
-                    f"requests.codes == {response.status_code}, retry "
-                    f"{i + 1}/{self.max_retries} times",
+                if i < self.max_retries:
+                    logger.warning(
+                        f"Failed to call the model with "
+                        f"status_code == {response.status_code}, retry "
+                        f"{i + 1}/{self.max_retries} times",
+                    )
+                    time.sleep(i * self.retry_interval)
+
+            except requests.exceptions.Timeout as timeout_exc:
+                last_error = (
+                    f"API request timed out after "
+                    f"{request_kwargs.get('timeout', self.timeout)} seconds"
                 )
-                time.sleep(i * self.retry_interval)
+                if i < self.max_retries:
+                    logger.warning(f"{last_error}, retrying...")
+                    time.sleep(i * self.retry_interval)
+                    continue
+                raise RuntimeError(last_error) from timeout_exc
+
+            except requests.exceptions.RequestException as e:
+                last_error = f"API request failed: {str(e)}"
+                if i < self.max_retries:
+                    logger.warning(f"{last_error}, retrying...")
+                    time.sleep(i * self.retry_interval)
+                    continue
+                raise RuntimeError(last_error) from e
+
+        if response is None:
+            raise RuntimeError(
+                last_error or "Failed to make API request after all retries",
+            )
 
         # step3: record model invocation
-        # record the model api invocation, which will be skipped if
-        # `FileManager.save_api_invocation` is `False`
         try:
             response_json = response.json()
         except requests.exceptions.JSONDecodeError as e:
-            raise RuntimeError(
-                f"Fail to serialize the response to json: \n{str(response)}",
-            ) from e
+            error_msg = f"Failed to parse JSON response: {str(response.text)}"
+            logger.error(error_msg)
+            raise RuntimeError(error_msg) from e
+
+        # Log request details (excluding sensitive data)
+        safe_request = {**request_kwargs}
+        if "headers" in safe_request:
+            safe_request["headers"] = {
+                k: v
+                for k, v in safe_request["headers"].items()
+                if k.lower() != "authorization"
+            }
 
         self._save_model_invocation(
-            arguments=request_kwargs,
+            arguments=safe_request,
             response=response_json,
         )
 
@@ -174,9 +243,11 @@ class PostAPIModelWrapperBase(ModelWrapperBase, ABC):
         if response.status_code == requests.codes.ok:
             return self._parse_response(response_json)
         else:
-            logger.error(json.dumps(request_kwargs, indent=4))
+            logger.error(json.dumps(safe_request, indent=4))
             raise RuntimeError(
-                f"Failed to call the model with {response.json()}",
+                "Failed to call the model with "
+                f"status {response.status_code}: "
+                f"{response_json}",
             )
 
 
@@ -196,7 +267,7 @@ class PostAPIChatWrapper(PostAPIModelWrapperBase):
     def format(
         self,
         *args: Union[Msg, Sequence[Msg]],
-    ) -> Union[List[dict]]:
+    ) -> List[dict]:
         """Format the input messages into a list of dict according to the model
         name. For example, if the model name is prefixed with "gpt-", the
         input messages will be formatted for OpenAI models.
@@ -321,3 +392,233 @@ class PostAPIEmbeddingWrapper(PostAPIModelWrapperBase):
             f"need to format the input. Please try to use the "
             f"model wrapper directly.",
         )
+
+
+class DegptChatWrapper(PostAPIModelWrapperBase):
+    """The model wrapper for DecentralGPT chat API.
+    中文说明：DecentralGPT对话式AI包装器，用于调用 DecentralGPT API。
+
+    Response format:
+    ```json
+    {
+        "id": "",
+        "object": "",
+        "created": 1736493297,
+        "choices": [{
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "Hello! How can I assist you today?"
+            },
+            "finish_reason": "stop"
+        }],
+        "usage": {
+            "completion_tokens": 10,
+            "prompt_tokens": 4,
+            "total_tokens": 14
+        }
+    }
+    ```
+    """
+
+    model_type: str = "degpt_chat"
+
+    def __init__(
+        self,
+        config_name: str,
+        api_url: str = (
+            "https://korea-chat.degpt.ai/api/v0/chat/completion/proxy"
+        ),
+        model_name: str = "Llama3.3-70B",
+        stream: bool = False,
+        **kwargs: Any,
+    ) -> None:
+        """Initialize the DegptChatWrapper.
+        中文说明：初始化DegptChatWrapper，设置API地址和模型参数。
+
+        Args:
+            config_name (`str`):
+                The name of the model config.
+                中文说明：模型配置名称。
+            api_url (`str`, defaults to DecentralGPT endpoint):
+                The API endpoint for DecentralGPT.
+                中文说明：DecentralGPT的API端点地址。
+            model_name (`str`, defaults to "DeepSeek-V3"):
+                The name of the model to use.
+                中文说明：使用的模型名称。
+            stream (`bool`, defaults to False):
+                Whether to enable streaming mode.
+                中文说明：是否启用流式响应模式。
+        """
+        json_args = {
+            "model": model_name,
+            "project": "DecentralGPT",
+            "stream": stream,
+        }
+
+        super().__init__(
+            config_name=config_name,
+            api_url=api_url,
+            model_name=model_name,
+            json_args=json_args,
+            **kwargs,
+        )
+
+        self.stream = stream
+
+    def _parse_response(self, response: dict) -> ModelResponse:
+        """Parse the response from DecentralGPT API.
+        中文说明：解析DecentralGPT API的响应。
+
+        Args:
+            response (`dict`):
+                The response from DecentralGPT API.
+                中文说明：来自DecentralGPT API的响应。
+
+        Returns:
+            `ModelResponse`: The parsed response.
+            中文说明：解析后的响应对象。
+
+        Raises:
+            ValueError: If the response format is invalid.
+            中文说明：如果响应格式无效则抛出ValueError。
+        """
+        if (
+            "choices" not in response
+            or len(response["choices"]) == 0
+            or "message" not in response["choices"][0]
+            or "content" not in response["choices"][0]["message"]
+        ):
+            error_msg = json.dumps(response, ensure_ascii=False, indent=2)
+            logger.error(f"Error in DecentralGPT API call:\n{error_msg}")
+            raise ValueError(f"Error in DecentralGPT API call:\n{error_msg}")
+
+        return ModelResponse(
+            text=response["choices"][0]["message"]["content"],
+            raw=response,
+        )
+
+    def format(
+        self,
+        *args: Union[Msg, Sequence[Msg]],
+    ) -> List[dict]:
+        """Format messages for DecentralGPT API.
+        中文说明：格式化消息以供DecentralGPT API使用。
+
+        Args:
+            args (`Union[Msg, Sequence[Msg]]`):
+                Messages to format.
+                中文说明：需要格式化的消息。
+
+        Returns:
+            `List[dict]`: Formatted messages.
+            中文说明：格式化后的消息列表。
+        """
+        return ModelWrapperBase.format_for_common_chat_models(*args)
+
+
+class SuperimageGenerationWrapper(PostAPIModelWrapperBase):
+    """The model wrapper for Superimage API.
+    中文说明：Superimage图像生成包装器，用于调用 Superimage API。
+
+    This wrapper handles image generation requests to the Superimage API.
+    中文说明：此包装器处理Superimage API的图像生成请求。
+    """
+
+    model_type: str = "superimage_generation"
+
+    def __init__(
+        self,
+        config_name: str,
+        api_url: str = (
+            "https://test.superimage.ai/api/v1/prompts/generate-image"
+        ),
+        model_name: str = "flux",
+        auth_token: Optional[str] = None,
+        **kwargs: Any,
+    ) -> None:
+        """Initialize the SuperimageGenerationWrapper.
+        中文说明：初始化SuperimageGenerationWrapper，设置API地址和模型参数。
+
+        Args:
+            config_name (`str`):
+                The name of the model config.
+                中文说明：模型配置名称。
+            api_url (`str`, defaults to Superimage endpoint):
+                The API endpoint for Superimage.
+                中文说明：Superimage的API端点地址。
+            model_name (`str`, defaults to "flux"):
+                The name of the model to use.
+                中文说明：使用的模型名称。
+        """
+        json_args = {"model": model_name}
+        messages_key = "prompt"  # Superimage API expects 'prompt' parameter
+
+        # Add default headers for Superimage API
+        headers = {
+            "accept": "application/json",
+            "content-type": "application/json",
+            "priority": "u=1, i",
+        }
+
+        # Add authorization header if token is provided
+        if auth_token:
+            headers["authorization"] = f"Bearer {auth_token}"
+
+        # Add timeout for API calls
+        timeout = kwargs.pop("timeout", 30)  # 30 seconds default timeout
+
+        super().__init__(
+            config_name=config_name,
+            api_url=api_url,
+            model_name=model_name,
+            json_args=json_args,
+            messages_key=messages_key,
+            headers=headers,
+            timeout=timeout,
+            **kwargs,
+        )
+
+    def _parse_response(self, response: dict) -> ModelResponse:
+        """Parse the response from Superimage API.
+        中文说明：解析Superimage API的响应。
+
+        Args:
+            response (`dict`):
+                The response from Superimage API.
+                中文说明：来自Superimage API的响应。
+
+        Returns:
+            `ModelResponse`: The parsed response containing image URLs.
+            中文说明：包含图像URL的解析后响应对象。
+
+        Raises:
+            ValueError: If the response format is invalid.
+            中文说明：如果响应格式无效则抛出ValueError。
+        """
+        if "output" not in response or "results" not in response["output"]:
+            error_msg = json.dumps(response, ensure_ascii=False, indent=2)
+            logger.error(f"Error in Superimage API call:\n{error_msg}")
+            raise ValueError(f"Error in Superimage API call:\n{error_msg}")
+
+        urls = [result["url"] for result in response["output"]["results"]]
+        return ModelResponse(image_urls=urls, raw=response)
+
+    def format(
+        self,
+        *args: Union[Msg, Sequence[Msg]],
+    ) -> str:
+        """Format messages into a prompt string for Superimage API.
+        中文说明：将消息格式化为Superimage API的提示字符串。
+
+        Args:
+            args (`Union[Msg, Sequence[Msg]]`):
+                Messages to format.
+                中文说明：需要格式化的消息。
+
+        Returns:
+            `str`: The formatted prompt string.
+            中文说明：格式化后的提示字符串。
+        """
+        messages = ModelWrapperBase.format_for_common_chat_models(*args)
+        return " ".join(msg["content"] for msg in messages)
