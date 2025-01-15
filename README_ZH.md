@@ -362,3 +362,69 @@ pre-commit install
 <a href="https://github.com/modelscope/agentscope/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=modelscope/agentscope&max=999&columns=12&anon=1" />
 </a>
+
+## 启动说明
+
+### 1. 安装依赖
+
+确保安装了所有必要的依赖：
+
+```bash
+# 安装分布式版本的依赖
+pip install "agentscope[distribute]" grpcio grpcio-tools cloudpickle expiringdict
+```
+
+### 2. 启动后端服务
+
+后端服务使用 gRPC 协议，可以通过以下命令启动：
+
+```python
+from agentscope.server.launcher import RpcAgentServerLauncher
+
+# 启动服务器
+launcher = RpcAgentServerLauncher(host='localhost', port=50051)
+launcher.launch()
+```
+
+服务器会自动选择可用端口，如果指定的端口被占用，它会自动切换到其他端口。
+可以通过日志信息查看实际使用的端口号，例如：
+```
+agent server [EumA1D2r] at localhost:61753 started successfully
+```
+
+### 3. 启动前端项目
+
+```bash
+cd XAIAgentPlatform
+npm run dev
+```
+
+前端项目将在 http://localhost:3000 启动。
+
+### 4. 验证服务状态
+
+可以使用以下 Python 代码验证服务器状态：
+
+```python
+from agentscope.rpc import RpcClient
+
+# 使用实际运行的端口
+client = RpcClient(host='localhost', port=61753)
+print('Server is alive:', client.is_alive())
+print('Agent list:', client.get_agent_list())
+```
+
+### 常见问题解决
+
+1. ImportError: No module named 'expiringdict'
+   - 解决方案：运行 `pip install expiringdict`
+
+2. ImportError: No module named 'cloudpickle'
+   - 解决方案：运行 `pip install cloudpickle`
+
+3. 端口被占用
+   - 解决方案：服务器会自动选择其他可用端口，注意查看启动日志中显示的实际端口号
+
+4. 前后端连接问题
+   - 确保前端配置中的 API 地址指向正确的后端端口
+   - 使用 RpcClient 测试后端服务是否正常运行

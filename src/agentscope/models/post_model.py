@@ -258,6 +258,7 @@ class PostAPIChatWrapper(PostAPIModelWrapperBase):
     model_type: str = "post_api_chat"
 
     def _parse_response(self, response: dict) -> ModelResponse:
+        print("response", response)
         return ModelResponse(
             text=response["data"]["response"]["choices"][0]["message"][
                 "content"
@@ -395,31 +396,7 @@ class PostAPIEmbeddingWrapper(PostAPIModelWrapperBase):
 
 
 class DegptChatWrapper(PostAPIModelWrapperBase):
-    """The model wrapper for DecentralGPT chat API.
-    中文说明：DecentralGPT对话式AI包装器，用于调用 DecentralGPT API。
-
-    Response format:
-    ```json
-    {
-        "id": "",
-        "object": "",
-        "created": 1736493297,
-        "choices": [{
-            "index": 0,
-            "message": {
-                "role": "assistant",
-                "content": "Hello! How can I assist you today?"
-            },
-            "finish_reason": "stop"
-        }],
-        "usage": {
-            "completion_tokens": 10,
-            "prompt_tokens": 4,
-            "total_tokens": 14
-        }
-    }
-    ```
-    """
+    """The model wrapper for DecentralGPT chat API."""
 
     model_type: str = "degpt_chat"
 
@@ -433,56 +410,49 @@ class DegptChatWrapper(PostAPIModelWrapperBase):
         stream: bool = False,
         **kwargs: Any,
     ) -> None:
-        """Initialize the DegptChatWrapper.
-        中文说明：初始化DegptChatWrapper，设置API地址和模型参数。
+        """Initialize the model wrapper.
 
         Args:
             config_name (`str`):
-                The name of the model config.
-                中文说明：模型配置名称。
-            api_url (`str`, defaults to DecentralGPT endpoint):
-                The API endpoint for DecentralGPT.
-                中文说明：DecentralGPT的API端点地址。
-            model_name (`str`, defaults to "DeepSeek-V3"):
-                The name of the model to use.
-                中文说明：使用的模型名称。
-            stream (`bool`, defaults to False):
-                Whether to enable streaming mode.
-                中文说明：是否启用流式响应模式。
+                The id of the model.
+            api_url (`str`):
+                The url of the post request api.
+            model_name (`str`):
+                The name of the model.
+            stream (`bool`):
+                Whether to use stream mode.
         """
+        # 确保 kwargs 中包含正确的 messages_key
+        kwargs['messages_key'] = "messages"
+        
+        headers = {
+            "Content-Type": "application/json",
+        }
+
         json_args = {
             "model": model_name,
-            "project": "DecentralGPT",
             "stream": stream,
+            "project": "DecentralGPT",
+        }
+
+        post_args = {
+            "verify": False  # 禁用 SSL 验证
         }
 
         super().__init__(
             config_name=config_name,
             api_url=api_url,
             model_name=model_name,
+            headers=headers,
             json_args=json_args,
+            post_args=post_args,
             **kwargs,
         )
 
         self.stream = stream
 
     def _parse_response(self, response: dict) -> ModelResponse:
-        """Parse the response from DecentralGPT API.
-        中文说明：解析DecentralGPT API的响应。
-
-        Args:
-            response (`dict`):
-                The response from DecentralGPT API.
-                中文说明：来自DecentralGPT API的响应。
-
-        Returns:
-            `ModelResponse`: The parsed response.
-            中文说明：解析后的响应对象。
-
-        Raises:
-            ValueError: If the response format is invalid.
-            中文说明：如果响应格式无效则抛出ValueError。
-        """
+        """Parse the response from DecentralGPT API."""
         if (
             "choices" not in response
             or len(response["choices"]) == 0
@@ -503,18 +473,23 @@ class DegptChatWrapper(PostAPIModelWrapperBase):
         *args: Union[Msg, Sequence[Msg]],
     ) -> List[dict]:
         """Format messages for DecentralGPT API.
-        中文说明：格式化消息以供DecentralGPT API使用。
-
-        Args:
-            args (`Union[Msg, Sequence[Msg]]`):
-                Messages to format.
-                中文说明：需要格式化的消息。
-
-        Returns:
-            `List[dict]`: Formatted messages.
-            中文说明：格式化后的消息列表。
+        Removes system message and simplifies the format.
         """
-        return ModelWrapperBase.format_for_common_chat_models(*args)
+        messages = []
+        for arg in args:
+            if isinstance(arg, (list, tuple)):
+                for msg in arg:
+                    if isinstance(msg, Msg) and msg.role != "system":
+                        messages.append({
+                            "role": msg.role,
+                            "content": msg.content
+                        })
+            elif isinstance(arg, Msg) and arg.role != "system":
+                messages.append({
+                    "role": arg.role,
+                    "content": arg.content
+                })
+        return messages
 
 
 class SuperimageGenerationWrapper(PostAPIModelWrapperBase):

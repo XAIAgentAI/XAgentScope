@@ -14,6 +14,7 @@ let descriptionStep;
 let nameToHtmlFile = {
     'welcome': 'welcome.html',
     'dashscope_chat': 'model-dashscope-chat.html',
+    'degpt_chat': 'model-degpt-chat.html',
     'openai_chat': 'model-openai-chat.html',
     'post_api_chat': 'model-post-api-chat.html',
     'post_api_dall_e': 'model-post-api-dall-e.html',
@@ -488,6 +489,24 @@ async function addNodeToDrawFlow(name, pos_x, pos_y) {
                 },
                 htmlSourceCode);
             addEventListenersToNumberInputs(dashscope_chatId);
+            break;
+        case 'degpt_chat':
+            const degpt_chatId = editor.addNode('degpt_chat', 0, 0, pos_x,
+                pos_y,
+                'degpt_chat', {
+                    "args":
+                        {
+                            "config_name": '',
+                            "model_name": '',
+                            "api_key": '',
+                            "temperature": 0.0,
+                            "seed": 0,
+                            "model_type": 'degpt_chat',
+                            "messages_key": 'input'
+                        }
+                },
+                htmlSourceCode);
+            addEventListenersToNumberInputs(degpt_chatId);
             break;
 
         case 'openai_chat':

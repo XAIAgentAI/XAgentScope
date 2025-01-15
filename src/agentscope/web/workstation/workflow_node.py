@@ -121,8 +121,7 @@ class ModelNode(WorkflowNode):
     def compile(self) -> dict:
         return {
             "imports": "from agentscope.manager import ModelManager",
-            "inits": f"ModelManager.get_instance().load_model_configs("
-            f"[{self.opt_kwargs}])",
+            "inits": f"ModelManager.get_instance().load_model_configs([{self.opt_kwargs}])",
             "execs": "",
         }
 
@@ -801,7 +800,34 @@ class WriteTextServiceNode(WorkflowNode):
         }
 
 
+class DegptChatNode(WorkflowNode):
+    """
+    A node representing a Degpt Chat model within a workflow.
+    """
+
+    node_type = WorkflowNodeType.MODEL
+
+    def __init__(
+        self,
+        node_id: str,
+        opt_kwargs: dict,
+        source_kwargs: dict,
+        dep_opts: list,
+    ) -> None:
+        super().__init__(node_id, opt_kwargs, source_kwargs, dep_opts)
+        ModelManager.get_instance().load_model_configs([self.opt_kwargs])
+
+    def compile(self) -> dict:
+        return {
+            "imports": "from agentscope.manager import ModelManager",
+            "inits": f"ModelManager.get_instance().load_model_configs([{self.opt_kwargs}])",
+            "execs": "",
+        }
+
+
 NODE_NAME_MAPPING = {
+    "welcome": None,
+    "degpt_chat": DegptChatNode,
     "dashscope_chat": ModelNode,
     "openai_chat": ModelNode,
     "post_api_chat": ModelNode,

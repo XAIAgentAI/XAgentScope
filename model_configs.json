@@ -1,0 +1,24 @@
+{
+    "degpt": {
+        "config_name": "degpt",
+        "model_type": "degpt_chat",
+        "api_url": "https://korea-chat.degpt.ai/api/v0/chat/completion/proxy",
+        "model_name": "Llama3.3-70B",
+        "json_args": {
+            "model": "Llama3.3-70B",
+            "project": "DecentralGPT",
+            "stream": false
+        }
+    },
+    "post_api": {
+        "config_name": "post_api",
+        "model_type": "post_api_chat",
+        "api_url": "https://korea-chat.degpt.ai/api/v0/chat/completion/proxy",
+        "model_name": "Llama3.3-70B",
+        "json_args": {
+            "model": "Llama3.3-70B",
+            "project": "DecentralGPT",
+            "stream": false
+        }
+    }
+} 

@@ -6,6 +6,7 @@ from .response import ModelResponse
 from .post_model import (
     PostAPIModelWrapperBase,
     PostAPIChatWrapper,
+    DegptChatWrapper,
 )
 from .openai_model import (
     OpenAIWrapperBase,
@@ -59,6 +60,7 @@ _BUILD_IN_MODEL_WRAPPERS = [
     "LiteLLMChatWrapper",
     "YiChatWrapper",
     "AnthropicChatWrapper",
+    "DegptChatWrapper",
 ]
 
 __all__ = [
@@ -66,6 +68,7 @@ __all__ = [
     "ModelResponse",
     "PostAPIModelWrapperBase",
     "PostAPIChatWrapper",
+    "DegptChatWrapper",
     "OpenAIWrapperBase",
     "OpenAIChatWrapper",
     "OpenAIDALLEWrapper",
