@@ -1,6 +1,6 @@
-[English](https://github.com/modelscope/agentscope/blob/main/README.md) | [中文](https://github.com/modelscope/agentscope/blob/main/README_ZH.md) | 日本語
+[**English**](https://github.com/XAIAgentAI/XAgentScope/blob/main/README.md) | [**中文**](https://github.com/XAIAgentAI/XAgentScope/blob/main/README_ZH.md) | 日本語
 
-<a href="https://trendshift.io/repositories/10079" target="_blank"><img src="https://trendshift.io/api/badge/repositories/10079" alt="modelscope%2Fagentscope | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+<a href="https://trendshift.io/repositories/10079" target="_blank"><img src="https://trendshift.io/api/badge/repositories/10079" alt="XAIAgentAI%2FXAgentScope | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 
 # AgentScope
 
@@ -13,9 +13,9 @@ LLMを活用したマルチエージェントアプリケーションをより�
 [![](https://img.shields.io/badge/cs.MA-2402.14034-B31C1C?logo=arxiv&logoColor=B31C1C)](https://arxiv.org/abs/2402.14034)
 [![](https://img.shields.io/badge/python-3.9+-blue)](https://pypi.org/project/agentscope/)
 [![](https://img.shields.io/badge/pypi-v0.1.1-blue?logo=pypi)](https://pypi.org/project/agentscope/)
-[![](https://img.shields.io/badge/Docs-English%7C%E4%B8%AD%E6%96%87-blue?logo=markdown)](https://modelscope.github.io/agentscope/#welcome-to-agentscope-tutorial-hub)
-[![](https://img.shields.io/badge/Docs-API_Reference-blue?logo=markdown)](https://modelscope.github.io/agentscope/)
-[![](https://img.shields.io/badge/Docs-Roadmap-blue?logo=markdown)](https://github.com/modelscope/agentscope/blob/main/docs/ROADMAP.md)
+[![](https://img.shields.io/badge/Docs-English%7C%E4%B8%AD%E6%96%87-blue?logo=markdown)](https://XAIAgentAI.github.io/XAgentScope/#welcome-to-agentscope-tutorial-hub)
+[![](https://img.shields.io/badge/Docs-API_Reference-blue?logo=markdown)](https://XAIAgentAI.github.io/XAgentScope/)
+[![](https://img.shields.io/badge/Docs-Roadmap-blue?logo=markdown)](https://github.com/XAIAgentAI/XAgentScope/blob/main/docs/ROADMAP.md)
 [![](https://img.shields.io/badge/ModelScope-Demos-4e29ff.svg?logo=data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjI0IDEyMS4zMyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KCTxwYXRoIGQ9Im0wIDQ3Ljg0aDI1LjY1djI1LjY1aC0yNS42NXoiIGZpbGw9IiM2MjRhZmYiIC8+Cgk8cGF0aCBkPSJtOTkuMTQgNzMuNDloMjUuNjV2MjUuNjVoLTI1LjY1eiIgZmlsbD0iIzYyNGFmZiIgLz4KCTxwYXRoIGQ9Im0xNzYuMDkgOTkuMTRoLTI1LjY1djIyLjE5aDQ3Ljg0di00Ny44NGgtMjIuMTl6IiBmaWxsPSIjNjI0YWZmIiAvPgoJPHBhdGggZD0ibTEyNC43OSA0Ny44NGgyNS42NXYyNS42NWgtMjUuNjV6IiBmaWxsPSIjMzZjZmQxIiAvPgoJPHBhdGggZD0ibTAgMjIuMTloMjUuNjV2MjUuNjVoLTI1LjY1eiIgZmlsbD0iIzM2Y2ZkMSIgLz4KCTxwYXRoIGQ9Im0xOTguMjggNDcuODRoMjUuNjV2MjUuNjVoLTI1LjY1eiIgZmlsbD0iIzYyNGFmZiIgLz4KCTxwYXRoIGQ9Im0xOTguMjggMjIuMTloMjUuNjV2MjUuNjVoLTI1LjY1eiIgZmlsbD0iIzM2Y2ZkMSIgLz4KCTxwYXRoIGQ9Im0xNTAuNDQgMHYyMi4xOWgyNS42NXYyNS42NWgyMi4xOXYtNDcuODR6IiBmaWxsPSIjNjI0YWZmIiAvPgoJPHBhdGggZD0ibTczLjQ5IDQ3Ljg0aDI1LjY1djI1LjY1aC0yNS42NXoiIGZpbGw9IiMzNmNmZDEiIC8+Cgk8cGF0aCBkPSJtNDcuODQgMjIuMTloMjUuNjV2LTIyLjE5aC00Ny44NHY0Ny44NGgyMi4xOXoiIGZpbGw9IiM2MjRhZmYiIC8+Cgk8cGF0aCBkPSJtNDcuODQgNzMuNDloLTIyLjE5djQ3Ljg0aDQ3Ljg0di0yMi4xOWgtMjUuNjV6IiBmaWxsPSIjNjI0YWZmIiAvPgo8L3N2Zz4K)](https://modelscope.cn/studios?name=agentscope&page=1&sort=latest)
 
 [![](https://img.shields.io/badge/Drag_and_drop_UI-WorkStation-blue?logo=html5&logoColor=green&color=dark-green)](https://agentscope.io/)
@@ -44,17 +44,17 @@ LLMを活用したマルチエージェントアプリケーションをより�
 
 - <img src="https://img.alicdn.com/imgextra/i3/O1CN01SFL0Gu26nrQBFKXFR_!!6000000007707-2-tps-500-500.png" alt="new" width="30" height="30"/>**[2025-01-04]** AgentScopeが現在Anthropic APIをサポートしています。
 
-- <img src="https://img.alicdn.com/imgextra/i3/O1CN01SFL0Gu26nrQBFKXFR_!!6000000007707-2-tps-500-500.png" alt="new" width="30" height="30"/>**[2024-12-12]** AgentScopeの[ロードマップ](https://github.com/modelscope/agentscope/blob/main/docs/ROADMAP.md)を更新しました。
+- <img src="https://img.alicdn.com/imgextra/i3/O1CN01SFL0Gu26nrQBFKXFR_!!6000000007707-2-tps-500-500.png" alt="new" width="30" height="30"/>**[2024-12-12]** AgentScopeの[ロードマップ](https://github.com/XAIAgentAI/XAgentScope/blob/main/docs/ROADMAP.md)を更新しました。
 
 - **[2024-09-06]** AgentScopeバージョン0.1.0がリリースされました。
 
-- **[2024-09-03]** AgentScopeは**Webブラウザ制御**をサポートしています。詳細については、[例](https://github.com/modelscope/agentscope/tree/main/examples/conversation_with_web_browser_agent)を参照してください。
+- **[2024-09-03]** AgentScopeは**Webブラウザ制御**をサポートしています。詳細については、[例](https://github.com/XAIAgentAI/XAgentScope/tree/main/examples/conversation_with_web_browser_agent)を参照してください。
 
 <h5 align="left">
 <video src="https://github.com/user-attachments/assets/6d03caab-6193-4ac6-8b1c-36f152ec02ec" width="45%" alt="web browser control" controls></video>
 </h5>
 
-[詳細情報](https://github.com/modelscope/agentscope/blob/main/docs/news_ja.md)
+[詳細情報](https://github.com/XAIAgentAI/XAgentScope/blob/main/docs/news_ja.md)
 
 ---
 
@@ -63,7 +63,7 @@ LLMを活用したマルチエージェントアプリケーションをより�
 AgentScopeは、開発者が大規模モデルを使用してマルチエージェントアプリケーションを構築する能力を提供する革新的なマルチエージェントプラットフォームです。
 それは3つの高レベルの機能を備えています：
 
-- 🤝 **使いやすさ**：開発者向けに設計されており、[豊富なコンポーネント](https://modelscope.github.io/agentscope/en/tutorial/204-service.html#)、[包括的なドキュメント](https://modelscope.github.io/agentscope/en/index.html)、および広範な互換性を提供します。さらに、[AgentScope Workstation](https://agentscope.io/)は、初心者向けの*ドラッグアンドドロッププログラミングプラットフォーム*と*copilot*を提供します。
+- 🤝 **使いやすさ**：開発者向けに設計されており、[豊富なコンポーネント](https://XAIAgentAI.github.io/XAgentScope/en/tutorial/204-service.html#)、[包括的なドキュメント](https://XAIAgentAI.github.io/XAgentScope/en/index.html)、および広範な互換性を提供します。さらに、[AgentScope Workstation](https://agentscope.io/)は、初心者向けの*ドラッグアンドドロッププログラミングプラットフォーム*と*copilot*を提供します。
 
 - ✅ **高い堅牢性**：カスタマイズ可能なフォールトトレランス制御と再試行メカニズムをサポートし、アプリケーションの安定性を向上させます。
 
@@ -75,34 +75,34 @@ AgentScopeは、ローカルモデルサービスとサードパーティのモ�
 
 | API                    | タスク            | モデルラッパー                                                                                                                   | 構成                                                                                                                                                                                                                            | サポートされているモデルの一部                                           |
 |------------------------|-----------------|---------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| OpenAI API             | チャット            | [`OpenAIChatWrapper`](https://github.com/modelscope/agentscope/blob/main/src/agentscope/models/openai_model.py)                 | [ガイダンス](https://modelscope.github.io/agentscope/en/tutorial/203-model.html#openai-api)  <br> [テンプレート](https://github.com/modelscope/agentscope/blob/main/examples/model_configs_template/openai_chat_template.json)                 | gpt-4o, gpt-4, gpt-3.5-turbo, ...                               |
-|                        | 埋め込み       | [`OpenAIEmbeddingWrapper`](https://github.com/modelscope/agentscope/blob/main/src/agentscope/models/openai_model.py)            | [ガイダンス](https://modelscope.github.io/agentscope/en/tutorial/203-model.html#openai-api) <br> [テンプレート](https://github.com/modelscope/agentscope/blob/main/examples/model_configs_template/openai_embedding_template.json)             | text-embedding-ada-002, ...                                     |
-|                        | DALL·E          | [`OpenAIDALLEWrapper`](https://github.com/modelscope/agentscope/blob/main/src/agentscope/models/openai_model.py)                | [ガイダンス](https://modelscope.github.io/agentscope/en/tutorial/203-model.html#openai-api) <br> [テンプレート](https://github.com/modelscope/agentscope/blob/main/examples/model_configs_template/openai_dall_e_template.json)                | dall-e-2, dall-e-3                                              |
-| DashScope API          | チャット            | [`DashScopeChatWrapper`](https://github.com/modelscope/agentscope/blob/main/src/agentscope/models/dashscope_model.py)           | [ガイダンス](https://modelscope.github.io/agentscope/en/tutorial/203-model.html#dashscope-api) <br> [テンプレート](https://github.com/modelscope/agentscope/blob/main/examples/model_configs_template/dashscope_chat_template.json)            | qwen-plus, qwen-max, ...                                        |
-|                        | 画像生成 | [`DashScopeImageSynthesisWrapper`](https://github.com/modelscope/agentscope/blob/main/src/agentscope/models/dashscope_model.py) | [ガイダンス](https://modelscope.github.io/agentscope/en/tutorial/203-model.html#dashscope-api)  <br>[テンプレート](https://github.com/modelscope/agentscope/blob/main/examples/model_configs_template/dashscope_image_synthesis_template.json) | wanx-v1                                                         |
-|                        | テキスト埋め込み  | [`DashScopeTextEmbeddingWrapper`](https://github.com/modelscope/agentscope/blob/main/src/agentscope/models/dashscope_model.py)  | [ガイダンス](https://modelscope.github.io/agentscope/en/tutorial/203-model.html#dashscope-api) <br> [テンプレート](https://github.com/modelscope/agentscope/blob/main/examples/model_configs_template/dashscope_text_embedding_template.json)  | text-embedding-v1, text-embedding-v2, ...                       |
-|                        | マルチモーダル      | [`DashScopeMultiModalWrapper`](https://github.com/modelscope/agentscope/blob/main/src/agentscope/models/dashscope_model.py)     | [ガイダンス](https://modelscope.github.io/agentscope/en/tutorial/203-model.html#dashscope-api) <br> [テンプレート](https://github.com/modelscope/agentscope/blob/main/examples/model_configs_template/dashscope_multimodal_template.json)      | qwen-vl-max, qwen-vl-chat-v1, qwen-audio-chat                   |
-| Gemini API             | チャット            | [`GeminiChatWrapper`](https://github.com/modelscope/agentscope/blob/main/src/agentscope/models/gemini_model.py)                 | [ガイダンス](https://modelscope.github.io/agentscope/en/tutorial/203-model.html#gemini-api) <br> [テンプレート](https://github.com/modelscope/agentscope/blob/main/examples/model_configs_template/gemini_chat_template.json)                  | gemini-pro, ...                                                 |
-|                        | 埋め込み       | [`GeminiEmbeddingWrapper`](https://github.com/modelscope/agentscope/blob/main/src/agentscope/models/gemini_model.py)            | [ガイダンス](https://modelscope.github.io/agentscope/en/tutorial/203-model.html#gemini-api) <br> [テンプレート](https://github.com/modelscope/agentscope/blob/main/examples/model_configs_template/gemini_embedding_template.json)             | models/embedding-001, ...                                       |
-| ZhipuAI API            | チャット            | [`ZhipuAIChatWrapper`](https://github.com/modelscope/agentscope/blob/main/src/agentscope/models/zhipu_model.py)                 | [ガイダンス](https://modelscope.github.io/agentscope/en/tutorial/203-model.html#zhipu-api) <br> [テンプレート](https://github.com/modelscope/agentscope/blob/main/examples/model_configs_template/zhipu_chat_template.json)                    | glm-4, ...                                                      |
-|                        | 埋め込み       | [`ZhipuAIEmbeddingWrapper`](https://github.com/modelscope/agentscope/blob/main/src/agentscope/models/zhipu_model.py)            | [ガイダンス](https://modelscope.github.io/agentscope/en/tutorial/203-model.html#zhipu-api) <br> [テンプレート](https://github.com/modelscope/agentscope/blob/main/examples/model_configs_template/zhipu_embedding_template.json)               | embedding-2, ...                                                |
-| ollama                 | チャット            | [`OllamaChatWrapper`](https://github.com/modelscope/agentscope/blob/main/src/agentscope/models/ollama_model.py)                 | [ガイダンス](https://modelscope.github.io/agentscope/en/tutorial/203-model.html#ollama-api) <br> [テンプレート](https://github.com/modelscope/agentscope/blob/main/examples/model_configs_template/ollama_chat_template.json)                  | llama3, llama2, Mistral, ...                                    |
-|                        | 埋め込み       | [`OllamaEmbeddingWrapper`](https://github.com/modelscope/agentscope/blob/main/src/agentscope/models/ollama_model.py)            | [ガイダンス](https://modelscope.github.io/agentscope/en/tutorial/203-model.html#ollama-api) <br> [テンプレート](https://github.com/modelscope/agentscope/blob/main/examples/model_configs_template/ollama_embedding_template.json)             | llama2, Mistral, ...                                            |
-|                        | 生成      | [`OllamaGenerationWrapper`](https://github.com/modelscope/agentscope/blob/main/src/agentscope/models/ollama_model.py)           | [ガイダンス](https://modelscope.github.io/agentscope/en/tutorial/203-model.html#ollama-api) <br> [テンプレート](https://github.com/modelscope/agentscope/blob/main/examples/model_configs_template/ollama_generate_template.json)              | llama2, Mistral, ...                                            |
-| LiteLLM API            | チャット            | [`LiteLLMChatWrapper`](https://github.com/modelscope/agentscope/blob/main/src/agentscope/models/litellm_model.py)               | [ガイダンス](https://modelscope.github.io/agentscope/en/tutorial/203-model.html#litellm-api) <br> [テンプレート](https://github.com/modelscope/agentscope/blob/main/examples/model_configs_template/litellm_chat_template.json)                | [litellmがサポートするモデル](https://docs.litellm.ai/docs/)... |
-| Yi API                 | チャット            | [`YiChatWrapper`](https://github.com/modelscope/agentscope/blob/main/src/agentscope/models/yi_model.py)                         | [ガイダンス](https://modelscope.github.io/agentscope/en/tutorial/203-model.html) <br> [テンプレート](https://github.com/modelscope/agentscope/blob/main/examples/model_configs_template/yi_chat_template.json)                | yi-large, yi-medium, ...                                        |
-| Post Request based API | -               | [`PostAPIModelWrapper`](https://github.com/modelscope/agentscope/blob/main/src/agentscope/models/post_model.py)                 | [ガイダンス](https://modelscope.github.io/agentscope/en/tutorial/203-model.html#post-request-api) <br> [テンプレート](https://github.com/modelscope/agentscope/blob/main/examples/model_configs_template/postapi_model_config_template.json)   | -                                                               |
-| Anthropic API          | Chat            | [`AnthropicChatWrapper`](https://github.com/modelscope/agentscope/blob/main/src/agentscope/models/anthropic_model.py)           | [guidance](https://modelscope.github.io/agentscope/en/tutorial/203-model.html#anthropic-api) <br> [template](https://github.com/modelscope/agentscope/blob/main/examples/model_configs_template/anthropic_chat_model_config_template.json) | claude-3-5-sonnet-20241022, ... |
+| OpenAI API             | チャット            | [`OpenAIChatWrapper`](https://github.com/XAIAgentAI/XAgentScope/blob/main/src/XAgentScope/models/openai_model.py)                 | [ガイダンス](https://XAIAgentAI.github.io/XAgentScope/en/tutorial/203-model.html#openai-api)  <br> [テンプレート](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/model_configs_template/openai_chat_template.json)                 | gpt-4o, gpt-4, gpt-3.5-turbo, ...                               |
+|                        | 埋め込み       | [`OpenAIEmbeddingWrapper`](https://github.com/XAIAgentAI/XAgentScope/blob/main/src/XAgentScope/models/openai_model.py)            | [ガイダンス](https://XAIAgentAI.github.io/XAgentScope/en/tutorial/203-model.html#openai-api) <br> [テンプレート](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/model_configs_template/openai_embedding_template.json)             | text-embedding-ada-002, ...                                     |
+|                        | DALL·E          | [`OpenAIDALLEWrapper`](https://github.com/XAIAgentAI/XAgentScope/blob/main/src/XAgentScope/models/openai_model.py)                | [ガイダンス](https://XAIAgentAI.github.io/XAgentScope/en/tutorial/203-model.html#openai-api) <br> [テンプレート](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/model_configs_template/openai_dall_e_template.json)                | dall-e-2, dall-e-3                                              |
+| DashScope API          | チャット            | [`DashScopeChatWrapper`](https://github.com/XAIAgentAI/XAgentScope/blob/main/src/XAgentScope/models/dashscope_model.py)           | [ガイダンス](https://XAIAgentAI.github.io/XAgentScope/en/tutorial/203-model.html#dashscope-api) <br> [テンプレート](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/model_configs_template/dashscope_chat_template.json)            | qwen-plus, qwen-max, ...                                        |
+|                        | 画像生成 | [`DashScopeImageSynthesisWrapper`](https://github.com/XAIAgentAI/XAgentScope/blob/main/src/XAgentScope/models/dashscope_model.py) | [ガイダンス](https://XAIAgentAI.github.io/XAgentScope/en/tutorial/203-model.html#dashscope-api)  <br>[テンプレート](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/model_configs_template/dashscope_image_synthesis_template.json) | wanx-v1                                                         |
+|                        | テキスト埋め込み  | [`DashScopeTextEmbeddingWrapper`](https://github.com/XAIAgentAI/XAgentScope/blob/main/src/XAgentScope/models/dashscope_model.py)  | [ガイダンス](https://XAIAgentAI.github.io/XAgentScope/en/tutorial/203-model.html#dashscope-api) <br> [テンプレート](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/model_configs_template/dashscope_text_embedding_template.json)  | text-embedding-v1, text-embedding-v2, ...                       |
+|                        | マルチモーダル      | [`DashScopeMultiModalWrapper`](https://github.com/XAIAgentAI/XAgentScope/blob/main/src/XAgentScope/models/dashscope_model.py)     | [ガイダンス](https://XAIAgentAI.github.io/XAgentScope/en/tutorial/203-model.html#dashscope-api) <br> [テンプレート](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/model_configs_template/dashscope_multimodal_template.json)      | qwen-vl-max, qwen-vl-chat-v1, qwen-audio-chat                   |
+| Gemini API             | チャット            | [`GeminiChatWrapper`](https://github.com/XAIAgentAI/XAgentScope/blob/main/src/XAgentScope/models/gemini_model.py)                 | [ガイダンス](https://XAIAgentAI.github.io/XAgentScope/en/tutorial/203-model.html#gemini-api) <br> [テンプレート](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/model_configs_template/gemini_chat_template.json)                  | gemini-pro, ...                                                 |
+|                        | 埋め込み       | [`GeminiEmbeddingWrapper`](https://github.com/XAIAgentAI/XAgentScope/blob/main/src/XAgentScope/models/gemini_model.py)            | [ガイダンス](https://XAIAgentAI.github.io/XAgentScope/en/tutorial/203-model.html#gemini-api) <br> [テンプレート](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/model_configs_template/gemini_embedding_template.json)             | models/embedding-001, ...                                       |
+| ZhipuAI API            | チャット            | [`ZhipuAIChatWrapper`](https://github.com/XAIAgentAI/XAgentScope/blob/main/src/XAgentScope/models/zhipu_model.py)                 | [ガイダンス](https://XAIAgentAI.github.io/XAgentScope/en/tutorial/203-model.html#zhipu-api) <br> [テンプレート](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/model_configs_template/zhipu_chat_template.json)                    | glm-4, ...                                                      |
+|                        | 埋め込み       | [`ZhipuAIEmbeddingWrapper`](https://github.com/XAIAgentAI/XAgentScope/blob/main/src/XAgentScope/models/zhipu_model.py)            | [ガイダンス](https://XAIAgentAI.github.io/XAgentScope/en/tutorial/203-model.html#zhipu-api) <br> [テンプレート](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/model_configs_template/zhipu_embedding_template.json)               | embedding-2, ...                                                |
+| ollama                 | チャット            | [`OllamaChatWrapper`](https://github.com/XAIAgentAI/XAgentScope/blob/main/src/XAgentScope/models/ollama_model.py)                 | [ガイダンス](https://XAIAgentAI.github.io/XAgentScope/en/tutorial/203-model.html#ollama-api) <br> [テンプレート](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/model_configs_template/ollama_chat_template.json)                  | llama3, llama2, Mistral, ...                                    |
+|                        | 埋め込み       | [`OllamaEmbeddingWrapper`](https://github.com/XAIAgentAI/XAgentScope/blob/main/src/XAgentScope/models/ollama_model.py)            | [ガイダンス](https://XAIAgentAI.github.io/XAgentScope/en/tutorial/203-model.html#ollama-api) <br> [テンプレート](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/model_configs_template/ollama_embedding_template.json)             | llama2, Mistral, ...                                            |
+|                        | 生成      | [`OllamaGenerationWrapper`](https://github.com/XAIAgentAI/XAgentScope/blob/main/src/XAgentScope/models/ollama_model.py)           | [ガイダンス](https://XAIAgentAI.github.io/XAgentScope/en/tutorial/203-model.html#ollama-api) <br> [テンプレート](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/model_configs_template/ollama_generate_template.json)              | llama2, Mistral, ...                                            |
+| LiteLLM API            | チャット            | [`LiteLLMChatWrapper`](https://github.com/XAIAgentAI/XAgentScope/blob/main/src/XAgentScope/models/litellm_model.py)               | [ガイダンス](https://XAIAgentAI.github.io/XAgentScope/en/tutorial/203-model.html#litellm-api) <br> [テンプレート](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/model_configs_template/litellm_chat_template.json)                | [litellmがサポートするモデル](https://docs.litellm.ai/docs/)... |
+| Yi API                 | チャット            | [`YiChatWrapper`](https://github.com/XAIAgentAI/XAgentScope/blob/main/src/XAgentScope/models/yi_model.py)                         | [ガイダンス](https://XAIAgentAI.github.io/XAgentScope/en/tutorial/203-model.html) <br> [テンプレート](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/model_configs_template/yi_chat_template.json)                | yi-large, yi-medium, ...                                        |
+| Post Request based API | -               | [`PostAPIModelWrapper`](https://github.com/XAIAgentAI/XAgentScope/blob/main/src/XAgentScope/models/post_model.py)                 | [ガイダンス](https://XAIAgentAI.github.io/XAgentScope/en/tutorial/203-model.html#post-request-api) <br> [テンプレート](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/model_configs_template/postapi_model_config_template.json)   | -                                                               |
+| Anthropic API          | Chat            | [`AnthropicChatWrapper`](https://github.com/XAIAgentAI/XAgentScope/blob/main/src/XAgentScope/models/anthropic_model.py)           | [guidance](https://XAIAgentAI.github.io/XAgentScope/en/tutorial/203-model.html#anthropic-api) <br> [template](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/model_configs_template/anthropic_chat_model_config_template.json) | claude-3-5-sonnet-20241022, ... |
 
 **サポートされているローカルモデルのデプロイ**
 
 AgentScopeは、次のライブラリを使用してローカルモデルサービスを迅速にデプロイするためのサポートを提供します。
 
-- [ollama (CPU推論)](https://github.com/modelscope/agentscope/blob/main/scripts/README.md#ollama)
-- [Flask + Transformers](https://github.com/modelscope/agentscope/blob/main/scripts/README.md#with-transformers-library)
-- [Flask + ModelScope](https://github.com/modelscope/agentscope/blob/main/scripts/README.md#with-modelscope-library)
-- [FastChat](https://github.com/modelscope/agentscope/blob/main/scripts/README.md#fastchat)
-- [vllm](https://github.com/modelscope/agentscope/blob/main/scripts/README.md#vllm)
+- [ollama (CPU推論)](https://github.com/XAIAgentAI/XAgentScope/blob/main/scripts/README.md#ollama)
+- [Flask + Transformers](https://github.com/XAIAgentAI/XAgentScope/blob/main/scripts/README.md#with-transformers-library)
+- [Flask + ModelScope](https://github.com/XAIAgentAI/XAgentScope/blob/main/scripts/README.md#with-modelscope-library)
+- [FastChat](https://github.com/XAIAgentAI/XAgentScope/blob/main/scripts/README.md#fastchat)
+- [vllm](https://github.com/XAIAgentAI/XAgentScope/blob/main/scripts/README.md#vllm)
 
 **サポートされているサービス**
 
@@ -120,33 +120,33 @@ AgentScopeは、次のライブラリを使用してローカルモデルサー�
 **例のアプリケーション**
 
 - モデル
-  - [AgentScopeでLlama3を使用する](https://github.com/modelscope/agentscope/blob/main/examples/model_llama3)
+  - [AgentScopeでLlama3を使用する](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/model_llama3)
 
 - 会話
-  - [基本的な会話](https://github.com/modelscope/agentscope/blob/main/examples/conversation_basic)
-  - [メンション付きの自律会話](https://github.com/modelscope/agentscope/blob/main/examples/conversation_with_mentions)
-  - [自己組織化会話](https://github.com/modelscope/agentscope/blob/main/examples/conversation_self_organizing)
-  - [LangChainライブラリを使用した基本的な会話](https://github.com/modelscope/agentscope/blob/main/examples/conversation_with_langchain)
-  - [ReActエージェントとの会話](https://github.com/modelscope/agentscope/blob/main/examples/conversation_with_react_agent)
-  - [自然言語でSQLをクエリする会話](https://github.com/modelscope/agentscope/blob/main/examples/conversation_nl2sql/)
-  - [RAGエージェントとの会話](https://github.com/modelscope/agentscope/blob/main/examples/conversation_with_RAG_agents)
-  - [gpt-4oとの会話](https://github.com/modelscope/agentscope/blob/main/examples/conversation_with_gpt-4o)
-  - [ソフトウェアエンジニアリングエージェントとの会話](https://github.com/modelscope/agentscope/blob/main/examples/conversation_with_swe-agent/)
-  - [カスタマイズされたツールとの会話](https://github.com/modelscope/agentscope/blob/main/examples/conversation_with_customized_services/)
-  - <img src="https://img.alicdn.com/imgextra/i3/O1CN01SFL0Gu26nrQBFKXFR_!!6000000007707-2-tps-500-500.png" alt="new" width="30" height="30"/>[Mixture of Agentsアルゴリズム](https://github.com/modelscope/agentscope/blob/main/examples/conversation_mixture_of_agents/)
-  - <img src="https://img.alicdn.com/imgextra/i3/O1CN01SFL0Gu26nrQBFKXFR_!!6000000007707-2-tps-500-500.png" alt="new" width="30" height="30"/>[ストリーミングモードでの会話](https://github.com/modelscope/agentscope/blob/main/examples/conversation_in_stream_mode/)
-  - <img src="https://img.alicdn.com/imgextra/i3/O1CN01SFL0Gu26nrQBFKXFR_!!6000000007707-2-tps-500-500.png" alt="new" width="30" height="30"/>[CodeActエージェントとの会話](https://github.com/modelscope/agentscope/blob/main/examples/conversation_with_codeact_agent/)
-  - <img src="https://img.alicdn.com/imgextra/i3/O1CN01SFL0Gu26nrQBFKXFR_!!6000000007707-2-tps-500-500.png" alt="new" width="30" height="30"/>[Routerエージェントとの会話](https://github.com/modelscope/agentscope/blob/main/examples/conversation_with_router_agent/)
+  - [基本的な会話](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/conversation_basic)
+  - [メンション付きの自律会話](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/conversation_with_mentions)
+  - [自己組織化会話](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/conversation_self_organizing)
+  - [LangChainライブラリを使用した基本的な会話](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/conversation_with_langchain)
+  - [ReActエージェントとの会話](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/conversation_with_react_agent)
+  - [自然言語でSQLをクエリする会話](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/conversation_nl2sql/)
+  - [RAGエージェントとの会話](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/conversation_with_RAG_agents)
+  - [gpt-4oとの会話](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/conversation_with_gpt-4o)
+  - [ソフトウェアエンジニアリングエージェントとの会話](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/conversation_with_swe-agent/)
+  - [カスタマイズされたツールとの会話](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/conversation_with_customized_services/)
+  - <img src="https://img.alicdn.com/imgextra/i3/O1CN01SFL0Gu26nrQBFKXFR_!!6000000007707-2-tps-500-500.png" alt="new" width="30" height="30"/>[Mixture of Agentsアルゴリズム](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/conversation_mixture_of_agents/)
+  - <img src="https://img.alicdn.com/imgextra/i3/O1CN01SFL0Gu26nrQBFKXFR_!!6000000007707-2-tps-500-500.png" alt="new" width="30" height="30"/>[ストリーミングモードでの会話](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/conversation_in_stream_mode/)
+  - <img src="https://img.alicdn.com/imgextra/i3/O1CN01SFL0Gu26nrQBFKXFR_!!6000000007707-2-tps-500-500.png" alt="new" width="30" height="30"/>[CodeActエージェントとの会話](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/conversation_with_codeact_agent/)
+  - <img src="https://img.alicdn.com/imgextra/i3/O1CN01SFL0Gu26nrQBFKXFR_!!6000000007707-2-tps-500-500.png" alt="new" width="30" height="30"/>[Routerエージェントとの会話](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/conversation_with_router_agent/)
 
 - ゲーム
-  - [五目並べ](https://github.com/modelscope/agentscope/blob/main/examples/game_gomoku)
-  - [人狼](https://github.com/modelscope/agentscope/blob/main/examples/game_werewolf)
+  - [五目並べ](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/game_gomoku)
+  - [人狼](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/game_werewolf)
 
 - 分散
-  - [分散会話](https://github.com/modelscope/agentscope/blob/main/examples/distributed_conversation)
-  - [分散ディベート](https://github.com/modelscope/agentscope/blob/main/examples/distributed_debate)
-  - [分散並列最適化](https://github.com/modelscope/agentscope/blob/main/examples/distributed_parallel_optimization)
-  - [分散大規模シミュレーション](https://github.com/modelscope/agentscope/blob/main/examples/distributed_simulation)
+  - [分散会話](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/distributed_conversation)
+  - [分散ディベート](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/distributed_debate)
+  - [分散並列最適化](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/distributed_parallel_optimization)
+  - [分散大規模シミュレーション](https://github.com/XAIAgentAI/XAgentScope/blob/main/examples/distributed_simulation)
 
 さらに多くのモデル、サービス、および例が近日公開予定です。
 
@@ -162,10 +162,10 @@ AgentScopeは**Python 3.9**以上が必要です。
 
 ```bash
 # GitHubからソースコードを取得
-git clone https://github.com/modelscope/agentscope.git
+git clone https://github.com/XAIAgentAI/XAgentScope.git
 
 # パッケージを編集モードでインストール
-cd agentscope
+cd XAgentScope
 pip install -e .
 ```
 
@@ -174,12 +174,12 @@ pip install -e .
 - pipからAgentScopeをインストールします：
 
 ```bash
-pip install agentscope
+pip install XAgentScope
 ```
 
 ### 追加の依存関係
 
-さまざまなデプロイメントシナリオをサポートするために、AgentScopeはいくつかのオプションの依存関係を提供します。オプションの依存関係の完全なリストは、[チュートリアル](https://doc.agentscope.io/en/tutorial/102-installation.html)を参照してください。分散モードを例にとると、次のように依存関係をインストールできます：
+さまざまなデプロイメントシナリオをサポートするために、AgentScopeはいくつかのオプションの依存関係を提供します。オプションの依存関係の完全なリストは、[チュートリアル](https://doc.XAIAgentAI.io/en/tutorial/102-installation.html)を参照してください。分散モードを例にとると、次のように依存関係をインストールできます：
 
 #### Windowsの場合
 
@@ -187,7 +187,7 @@ pip install agentscope
 # ソースから
 pip install -e .[distribute]
 # pypiから
-pip install agentscope[distribute]
+pip install XAgentScope[distribute]
 ```
 
 #### Mac & Linuxの場合
@@ -196,7 +196,7 @@ pip install agentscope[distribute]
 # ソースから
 pip install -e .\[distribute\]
 # pypiから
-pip install agentscope\[distribute\]
+pip install XAgentScope\[distribute\]
 ```
 
 ## クイックスタート
@@ -232,18 +232,18 @@ openai_model_config = {
 }
 ```
 
-ローカルモデルサービスのセットアップ方法やモデル構成の準備方法の詳細については、[チュートリアル](https://modelscope.github.io/agentscope/index.html#welcome-to-agentscope-tutorial-hub)を参照してください。
+ローカルモデルサービスのセットアップ方法やモデル構成の準備方法の詳細については、[チュートリアル](https://XAIAgentAI.github.io/XAgentScope/index.html#welcome-to-agentscope-tutorial-hub)を参照してください。
 
 ### エージェントの作成
 
 次のように組み込みのユーザーエージェントとアシスタントエージェントを作成します。
 
 ```python
-from agentscope.agents import DialogAgent, UserAgent
-import agentscope
+from XAgentScope.agents import DialogAgent, UserAgent
+import XAgentScope
 
 # モデル構成を読み込む
-agentscope.init(model_configs="./model_configs.json")
+XAgentScope.init(model_configs="./model_configs.json")
 
 # ダイアログエージェントとユーザーエージェントを作成する
 dialog_agent = DialogAgent(name="assistant",
@@ -256,7 +256,7 @@ user_agent = UserAgent()
 AgentScopeでは、**メッセージ**はエージェント間の橋渡しであり、**dict**であり、2つの必要なフィールド`name`と`content`、およびローカルファイル（画像、ビデオ、またはオーディオ）またはウェブサイトへのオプションのフィールド`url`を含みます。
 
 ```python
-from agentscope.message import Msg
+from XAgentScope.message import Msg
 
 x = Msg(name="Alice", content="Hi!")
 x = Msg("Bob", "What about this picture I took?", url="/path/to/picture.jpg")
@@ -277,7 +277,7 @@ while True:
 
 AgentScopeは、テキスト、画像、オーディオ、ビデオなどのマルチモーダル出力をフロントエンドで表示できる使いやすいランタイムユーザーインターフェースを提供します。
 
-詳細については、[チュートリアル](https://modelscope.github.io/agentscope/en/tutorial/209-gui.html)を参照してください。
+詳細については、[チュートリアル](https://XAIAgentAI.github.io/XAgentScope/en/tutorial/209-gui.html)を参照してください。
 
 <h5 align="center">
 <img src="https://img.alicdn.com/imgextra/i4/O1CN015kjnkd1xdwJoNxqLZ_!!6000000006467-0-tps-3452-1984.jpg" width="600" alt="agentscope-logo">
@@ -285,21 +285,21 @@ AgentScopeは、テキスト、画像、オーディオ、ビデオなどのマ�
 
 ## チュートリアル
 
-- [AgentScopeについて](https://modelscope.github.io/agentscope/zh_CN/tutorial/101-agentscope.html)
-- [インストール](https://modelscope.github.io/agentscope/zh_CN/tutorial/102-installation.html)
-- [クイックスタート](https://modelscope.github.io/agentscope/zh_CN/tutorial/103-example.html)
-- [モデル](https://modelscope.github.io/agentscope/zh_CN/tutorial/203-model.html)
-- [プロンプトエンジニアリング](https://modelscope.github.io/agentscope/zh_CN/tutorial/206-prompt.html)
-- [エージェント](https://modelscope.github.io/agentscope/zh_CN/tutorial/201-agent.html)
-- [メモリ](https://modelscope.github.io/agentscope/zh_CN/tutorial/205-memory.html)
-- [応答パーサー](https://modelscope.github.io/agentscope/zh_CN/tutorial/203-parser.html)
-- [ツール](https://modelscope.github.io/agentscope/zh_CN/tutorial/204-service.html)
-- [パイプラインとMsgHub](https://modelscope.github.io/agentscope/zh_CN/tutorial/202-pipeline.html)
-- [分散](https://modelscope.github.io/agentscope/zh_CN/tutorial/208-distribute.html)
-- [AgentScope Studio](https://modelscope.github.io/agentscope/zh_CN/tutorial/209-gui.html)
-- [ログ](https://modelscope.github.io/agentscope/zh_CN/tutorial/105-logging.html)
-- [モニター](https://modelscope.github.io/agentscope/zh_CN/tutorial/207-monitor.html)
-- [例：人狼ゲーム](https://modelscope.github.io/agentscope/zh_CN/tutorial/104-usecase.html)
+- [AgentScopeについて](https://XAIAgentAI.github.io/XAgentScope/zh_CN/tutorial/101-agentscope.html)
+- [インストール](https://XAIAgentAI.github.io/XAgentScope/zh_CN/tutorial/102-installation.html)
+- [クイックスタート](https://XAIAgentAI.github.io/XAgentScope/zh_CN/tutorial/103-example.html)
+- [モデル](https://XAIAgentAI.github.io/XAgentScope/zh_CN/tutorial/203-model.html)
+- [プロンプトエンジニアリング](https://XAIAgentAI.github.io/XAgentScope/zh_CN/tutorial/206-prompt.html)
+- [エージェント](https://XAIAgentAI.github.io/XAgentScope/zh_CN/tutorial/201-agent.html)
+- [メモリ](https://XAIAgentAI.github.io/XAgentScope/zh_CN/tutorial/205-memory.html)
+- [応答パーサー](https://XAIAgentAI.github.io/XAgentScope/zh_CN/tutorial/203-parser.html)
+- [ツール](https://XAIAgentAI.github.io/XAgentScope/zh_CN/tutorial/204-service.html)
+- [パイプラインとMsgHub](https://XAIAgentAI.github.io/XAgentScope/zh_CN/tutorial/202-pipeline.html)
+- [分散](https://XAIAgentAI.github.io/XAgentScope/zh_CN/tutorial/208-distribute.html)
+- [AgentScope Studio](https://XAIAgentAI.github.io/XAgentScope/zh_CN/tutorial/209-gui.html)
+- [ログ](https://XAIAgentAI.github.io/XAgentScope/zh_CN/tutorial/105-logging.html)
+- [モニター](https://XAIAgentAI.github.io/XAgentScope/zh_CN/tutorial/207-monitor.html)
+- [例：人狼ゲーム](https://XAIAgentAI.github.io/XAgentScope/zh_CN/tutorial/104-usecase.html)
 
 ## ライセンス
 
@@ -321,7 +321,7 @@ pip install -e .\[dev\]
 pre-commit install
 ```
 
-詳細については、[貢献ガイド](https://modelscope.github.io/agentscope/en/tutorial/302-contribute.html)を参照してください。
+詳細については、[貢献ガイド](https://XAIAgentAI.github.io/XAgentScope/en/tutorial/302-contribute.html)を参照してください。
 
 ## 出版物
 
@@ -361,6 +361,6 @@ pre-commit install
 
 貢献者の皆様、ありがとうございました:
 
-<a href="https://github.com/modelscope/agentscope/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=modelscope/agentscope&max=999&columns=12&anon=1" />
+<a href="https://github.com/XAIAgentAI/XAgentScope/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=XAIAgentAI/XAgentScope&max=999&columns=12&anon=1" />
 </a>

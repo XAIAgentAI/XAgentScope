@@ -1,6 +1,6 @@
-[English](https://github.com/modelscope/agentscope/blob/main/README.md) | 中文 | [日本語](https://github.com/modelscope/agentscope/blob/main/README_JA.md)
+[**English**](https://github.com/XAIAgentAI/XAgentScope/blob/main/README.md) | 中文 | [**日本語**](https://github.com/XAIAgentAI/XAgentScope/blob/main/README_JA.md)
 
-<a href="https://trendshift.io/repositories/10079" target="_blank"><img src="https://trendshift.io/api/badge/repositories/10079" alt="modelscope%2Fagentscope | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+<a href="https://trendshift.io/repositories/10079" target="_blank"><img src="https://trendshift.io/api/badge/repositories/10079" alt="XAIAgentAI%2FXAgentScope | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 
 # AgentScope
 
@@ -13,9 +13,9 @@
 [![](https://img.shields.io/badge/cs.MA-2402.14034-B31C1C?logo=arxiv&logoColor=B31C1C)](https://arxiv.org/abs/2402.14034)
 [![](https://img.shields.io/badge/python-3.9+-blue)](https://pypi.org/project/agentscope/)
 [![](https://img.shields.io/badge/pypi-v0.1.1-blue?logo=pypi)](https://pypi.org/project/agentscope/)
-[![](https://img.shields.io/badge/Docs-English%7C%E4%B8%AD%E6%96%87-blue?logo=markdown)](https://modelscope.github.io/agentscope/#welcome-to-agentscope-tutorial-hub)
-[![](https://img.shields.io/badge/Docs-API_Reference-blue?logo=markdown)](https://modelscope.github.io/agentscope/)
-[![](https://img.shields.io/badge/Docs-Roadmap-blue?logo=markdown)](https://github.com/modelscope/agentscope/blob/main/docs/ROADMAP.md)
+[![](https://img.shields.io/badge/Docs-English%7C%E4%B8%AD%E6%96%87-blue?logo=markdown)](https://XAIAgentAI.github.io/XAgentScope/#welcome-to-agentscope-tutorial-hub)
+[![](https://img.shields.io/badge/Docs-API_Reference-blue?logo=markdown)](https://XAIAgentAI.github.io/XAgentScope/)
+[![](https://img.shields.io/badge/Docs-Roadmap-blue?logo=markdown)](https://github.com/XAIAgentAI/XAgentScope/blob/main/docs/ROADMAP.md)
 [![](https://img.shields.io/badge/ModelScope-Demos-4e29ff.svg?logo=data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjI0IDEyMS4zMyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KCTxwYXRoIGQ9Im0wIDQ3Ljg0aDI1LjY1djI1LjY1aC0yNS42NXoiIGZpbGw9IiM2MjRhZmYiIC8+Cgk8cGF0aCBkPSJtOTkuMTQgNzMuNDloMjUuNjV2MjUuNjVoLTI1LjY1eiIgZmlsbD0iIzYyNGFmZiIgLz4KCTxwYXRoIGQ9Im0xNzYuMDkgOTkuMTRoLTI1LjY1djIyLjE5aDQ3Ljg0di00Ny44NGgtMjIuMTl6IiBmaWxsPSIjNjI0YWZmIiAvPgoJPHBhdGggZD0ibTEyNC43OSA0Ny44NGgyNS42NXYyNS42NWgtMjUuNjV6IiBmaWxsPSIjMzZjZmQxIiAvPgoJPHBhdGggZD0ibTAgMjIuMTloMjUuNjV2MjUuNjVoLTI1LjY1eiIgZmlsbD0iIzM2Y2ZkMSIgLz4KCTxwYXRoIGQ9Im0xOTguMjggNDcuODRoMjUuNjV2MjUuNjVoLTI1LjY1eiIgZmlsbD0iIzYyNGFmZiIgLz4KCTxwYXRoIGQ9Im0xOTguMjggMjIuMTloMjUuNjV2MjUuNjVoLTI1LjY1eiIgZmlsbD0iIzM2Y2ZkMSIgLz4KCTxwYXRoIGQ9Im0xNTAuNDQgMHYyMi4xOWgyNS42NXYyNS42NWgyMi4xOXYtNDcuODR6IiBmaWxsPSIjNjI0YWZmIiAvPgoJPHBhdGggZD0ibTczLjQ5IDQ3Ljg0aDI1LjY1djI1LjY1aC0yNS42NXoiIGZpbGw9IiMzNmNmZDEiIC8+Cgk8cGF0aCBkPSJtNDcuODQgMjIuMTloMjUuNjV2LTIyLjE5aC00Ny44NHY0Ny44NGgyMi4xOXoiIGZpbGw9IiM2MjRhZmYiIC8+Cgk8cGF0aCBkPSJtNDcuODQgNzMuNDloLTIyLjE5djQ3Ljg0aDQ3Ljg0di0yMi4xOWgtMjUuNjV6IiBmaWxsPSIjNjI0YWZmIiAvPgo8L3N2Zz4K)](https://modelscope.cn/studios?name=agentscope&page=1&sort=latest)
 
 [![](https://img.shields.io/badge/Drag_and_drop_UI-WorkStation-blue?logo=html5&logoColor=green&color=dark-green)](https://agentscope.io/)
@@ -44,17 +44,17 @@
 
 - <img src="https://img.alicdn.com/imgextra/i3/O1CN01SFL0Gu26nrQBFKXFR_!!6000000007707-2-tps-500-500.png" alt="new" width="30" height="30"/>**[2025-01-04]** AgentScope 已支持 Anthropic API
 
-- <img src="https://img.alicdn.com/imgextra/i3/O1CN01SFL0Gu26nrQBFKXFR_!!6000000007707-2-tps-500-500.png" alt="new" width="30" height="30"/>**[2024-12-12]** [AgentScope 开发路线图](https://github.com/modelscope/agentscope/blob/main/docs/ROADMAP.md) 已更新
+- <img src="https://img.alicdn.com/imgextra/i3/O1CN01SFL0Gu26nrQBFKXFR_!!6000000007707-2-tps-500-500.png" alt="new" width="30" height="30"/>**[2024-12-12]** [AgentScope 开发路线图](https://github.com/XAIAgentAI/XAgentScope/blob/main/docs/ROADMAP.md) 已更新
 
 - **[2024-09-06]** AgentScope v0.1.0 版本已上线
 
-- **[2024-09-03]** AgentScope 已更新浏览器控制模块，利用 vision 模型实现智能体对浏览器的控制。请参考[**样例**](https://github.com/modelscope/agentscope/tree/main/examples/conversation_with_web_browser_agent)
+- **[2024-09-03]** AgentScope 已更新浏览器控制模块，利用 vision 模型实现智能体对浏览器的控制。请参考[**样例**](https://github.com/XAIAgentAI/XAgentScope/tree/main/examples/conversation_with_web_browser_agent)
 
 <h5 align="left">
 <video src="https://github.com/user-attachments/assets/6d03caab-6193-4ac6-8b1c-36f152ec02ec" width="45%" alt="web browser control" controls></video>
 </h5>
 
-[查看更多消息](https://github.com/modelscope/agentscope/blob/main/docs/news_zh.md)
+[查看更多消息](https://github.com/XAIAgentAI/XAgentScope/blob/main/docs/news_zh.md)
 
 ---
 
