@@ -59,9 +59,22 @@ if _is_windows():
 else:
     _app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:////{str(_cache_db)}"
 
+# 添加必要的Flask配置
+_app.config['SECRET_KEY'] = os.urandom(24)
+_app.config['CORS_HEADERS'] = 'Content-Type'
+
 _db = SQLAlchemy(_app)
 
-_socketio = SocketIO(_app, cors_allowed_origins="*")
+# 修改SocketIO配置
+_socketio = SocketIO(
+    _app,
+    cors_allowed_origins="*",
+    async_mode='threading',
+    logger=True,
+    engineio_logger=True,
+    ping_timeout=60,
+    ping_interval=25
+)
 
 # This will enable CORS for all routes
 CORS(_app, resources={r"/*": {"origins": "*"}})
@@ -1017,11 +1030,18 @@ def _user_input_ready(data: dict) -> None:
         to=run_id,
     )
 
+    _app.logger.debug(f"触发了fetch_user_input: {data}")
+
     # Close the request in the queue
     _UserInputRequestQueue.close_a_request(run_id, agent_id)
 
+    _app.logger.debug(f"关闭了request: {run_id}, {agent_id}")
+
     # Fetch a new user input request for this run_id if exists
     new_request = _UserInputRequestQueue.fetch_a_request(run_id)
+
+    _app.logger.debug(f"新的request: {new_request}")
+
     if new_request is not None:
         _socketio.emit(
             "enable_user_input",
@@ -1032,21 +1052,45 @@ def _user_input_ready(data: dict) -> None:
     _app.logger.debug("Flask: send fetch_user_input")
 
 
+@_socketio.on_error_default
+def default_error_handler(e: Exception) -> None:
+    """Default error handler for all namespaces and events."""
+    _app.logger.error(f"SocketIO错误: {str(e)}")
+    _app.logger.error(f"错误详情: {traceback.format_exc()}")
+
+
+@_socketio.on("connect_error")
+def connect_error_handler(error: dict) -> None:
+    """Handle connection errors."""
+    _app.logger.error(f"SocketIO连接错误: {error}")
+
+
 @_socketio.on("connect")
 def _on_connect() -> None:
     """Execute when a client is connected."""
-    _app.logger.info("New client connected")
+    try:
+        _app.logger.info(f"新的WebSocket客户端连接 - SID: {request.sid}")
+    except Exception as e:
+        _app.logger.error(f"处理连接时出错: {str(e)}")
+        _app.logger.error(traceback.format_exc())
 
 
 @_socketio.on("disconnect")
 def _on_disconnect() -> None:
     """Execute when a client is disconnected."""
-    _app.logger.info("Client disconnected")
+    try:
+        _app.logger.info(f"WebSocket客户端断开连接 - SID: {request.sid}")
+    except Exception as e:
+        _app.logger.error(f"处理断开连接时出错: {str(e)}")
+        _app.logger.error(traceback.format_exc())
 
 
 @_socketio.on("join")
 def _on_join(data: dict) -> None:
     """Join a websocket room"""
+
+    _app.logger.debug(f"join Flask: receive join: {data}")
+
     run_id = data["run_id"]
     join_room(run_id)
 
